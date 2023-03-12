@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {Bases} from "./baseball/Bases";
 import {useState} from 'react';
 import {BaseEnum} from "./baseball/model/BasesEnum";
@@ -8,16 +8,50 @@ import {Inning} from "./baseball/Inning";
 import {InningHalfEnum} from "./baseball/model/InningHalfEnum";
 import {InningValue} from "./baseball/model/Inning";
 import {Counts} from "./baseball/Counts";
+import {State} from "./baseball/model/State";
+
+
+const savedState = localStorage.getItem('state');
+let initialState = savedState ? JSON.parse(savedState) : {
+    bases: [],
+    home: '',
+    away: '',
+    score: [0, 0],
+    inning: {
+        value: 0,
+        half: InningHalfEnum.TOP
+    },
+    outs: 0,
+    strikes: 0,
+    balls: 0
+};
+
 
 function App() {
-    const [bases, setBases] = useState<BaseEnum[]>([])
-    const [home, setHome] = useState<string>('HB');
-    const [away, setAway] = useState<string>('DI');
-    const [score, setScore] = useState<[number, number]>([0, 0]);
-    const [inning, setInning] = useState<InningValue>({ half: InningHalfEnum.TOP, value: 1});
-    const [outs, setOuts] = useState<number>(0);
-    const [strikes, setStrikes] = useState<number>(0);
-    const [balls, setBalls] = useState<number>(0);
+    const [bases, setBases] = useState<BaseEnum[]>(initialState.bases)
+    const [home, setHome] = useState<string>(initialState.home);
+    const [away, setAway] = useState<string>(initialState.away);
+    const [score, setScore] = useState<[number, number]>(initialState.score);
+    const [inning, setInning] = useState<InningValue>(initialState.inning);
+    const [outs, setOuts] = useState<number>(initialState.outs);
+    const [strikes, setStrikes] = useState<number>(initialState.strikes);
+    const [balls, setBalls] = useState<number>(initialState.balls);
+    const state: State = useMemo(() => {
+        return {
+            bases,
+            home,
+            away,
+            score,
+            inning: inning,
+            outs: outs,
+            strikes: strikes,
+            balls: balls
+        }
+    }, [bases, home, away,score, inning, outs,strikes, balls])
+
+    useEffect(() => {
+        localStorage.setItem('state', JSON.stringify(state));
+    }, [state])
 
     return (
         <div className="">
@@ -30,7 +64,7 @@ function App() {
                 </div>
             </div>
             <Control
-                bases={bases}
+                state={state}
                 handleBallClick={() => {
                     if (balls === 3) {
                         setBalls(0);
@@ -81,7 +115,7 @@ function App() {
                 }
                 }
                 handleInningChange={(half, value) => {
-                    setInning({ half, value })
+                    setInning({half, value})
                 }
                 }
                 handleScoreChange={(team, value) => {

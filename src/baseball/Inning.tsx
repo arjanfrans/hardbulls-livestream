@@ -20,7 +20,6 @@ const renderInningSvg = (inningHalf: InningHalfEnum, isCurrent: boolean) => {
     )
 }
 export const Inning = ({inning}: Props) => {
-    console.log(inning)
     return (
         <div className="inning-container">
             <div style={{marginBottom: '-14px'}}>

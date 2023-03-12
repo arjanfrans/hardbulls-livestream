@@ -1,8 +1,9 @@
 import {BaseEnum} from "./model/BasesEnum";
 import {InningHalfEnum} from "./model/InningHalfEnum";
+import {State} from "./model/State";
 
 interface Props {
-    bases: BaseEnum[],
+    state: State
     handleScoreChange: (team: 'home' | 'away', value: number) => void;
     handleBaseChange: (base: BaseEnum, value: boolean) => void
     handleInningChange: (half: InningHalfEnum, value: number) => void
@@ -15,16 +16,16 @@ interface Props {
 }
 
 export const Control = ({
-    bases,
+                            state,
                             handleStrikeClick,
                             handleBallClick,
                             handleOutClick,
                             handleScoreChange,
                             handleBaseChange,
                             handleInningChange,
-    handleClearBases,
-    handleTeamNameChange,
-    handleResetCountClick
+                            handleClearBases,
+                            handleTeamNameChange,
+                            handleResetCountClick
                         }: Props) => {
     return (
         <div className="control-container">
@@ -33,6 +34,7 @@ export const Control = ({
                 <div>
                     <input
                         type="text"
+                        value={state.home}
                         onChange={(event) => handleTeamNameChange('home', event.currentTarget.value)}
                     />
                 </div>
@@ -42,6 +44,7 @@ export const Control = ({
                 <div>
                     <input
                         type="text"
+                        value={state.away}
                         onChange={(event) => handleTeamNameChange('away', event.currentTarget.value)}
                     />
                 </div>
@@ -51,7 +54,7 @@ export const Control = ({
                 <div>
                     <input
                         type="number"
-                        defaultValue={0}
+                        value={state.score[0]}
                         onChange={(event) => handleScoreChange('home', Number.parseInt(event.currentTarget.value))}
                     />
                 </div>
@@ -59,7 +62,9 @@ export const Control = ({
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <div>Away score</div>
                 <div>
-                    <input defaultValue={0} type="number"
+                    <input
+                        value={state.score[1]}
+                        type="number"
                            onChange={(event) => handleScoreChange('away', Number.parseInt(event.currentTarget.value))}
                     />
                 </div>
@@ -69,7 +74,7 @@ export const Control = ({
                 <div>Inning</div>
                 <div>
                     <input type="number"
-                           defaultValue={1}
+                           value={state.inning.value + (state.inning.half === InningHalfEnum.BOTTOM ? 0.5 : 0)}
                            step={0.5}
                            onChange={(event) => {
                                const value = Number.parseInt(event.currentTarget.value)
@@ -90,36 +95,36 @@ export const Control = ({
                 <div>1B</div>
                 <div>
                     <input type="checkbox"
-                           checked={bases.includes(BaseEnum.FIRST)}
+                           checked={state.bases.includes(BaseEnum.FIRST)}
                            onChange={(event) => handleBaseChange(BaseEnum.FIRST, event.currentTarget.checked)}/>
                 </div>
                 <div>2B</div>
                 <div>
                     <input type="checkbox"
-                           checked={bases.includes(BaseEnum.SECOND)}
+                           checked={state.bases.includes(BaseEnum.SECOND)}
                            onChange={(event) => handleBaseChange(BaseEnum.SECOND, event.currentTarget.checked)}/>
                 </div>
                 <div>3B</div>
                 <div>
                     <input type="checkbox"
-                           checked={bases.includes(BaseEnum.THIRD)}
+                           checked={state.bases.includes(BaseEnum.THIRD)}
                            onChange={(event) => handleBaseChange(BaseEnum.THIRD, event.currentTarget.checked)}/>
                 </div>
             </div>
             <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-                    <button onClick={handleOutClick}>
-                        Out
-                    </button>
-                    <button onClick={handleStrikeClick}>
-                        Strike
-                    </button>
-                    <button onClick={handleBallClick}>
-                        Ball
-                    </button>
-                    <button onClick={handleResetCountClick}>
-                        Reset count
-                    </button>
-                    <button onClick={handleClearBases}>Clear bases</button>
+                <button onClick={handleOutClick}>
+                    Out
+                </button>
+                <button onClick={handleStrikeClick}>
+                    Strike
+                </button>
+                <button onClick={handleBallClick}>
+                    Ball
+                </button>
+                <button onClick={handleResetCountClick}>
+                    Reset count
+                </button>
+                <button onClick={handleClearBases}>Clear bases</button>
             </div>
         </div>
     )
