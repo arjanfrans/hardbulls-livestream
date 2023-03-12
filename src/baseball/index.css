@@ -1,0 +1,119 @@
+.base-container {
+    background-color: #333;
+    border-left: 2px solid #666;
+
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #666;
+    width: 220px;
+}
+
+.base-rotate-wrapper {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: 24px 0 8px 54px;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.base {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+
+.base-on {
+    background-color: #ffd300;
+}
+
+.base-off {
+    background-color: #8c8b7f;
+}
+
+#second-base {
+    left: 0;
+    top: 0;
+}
+
+#third-base {
+    left: 0;
+    top: calc(32px + 8px);
+}
+
+#first-base {
+    left: calc(32px + 8px);
+    top: 0
+}
+
+
+.score-row {
+    justify-content: space-between;
+}
+
+.score-name {
+    width: 100%;
+    color: #fff;
+    background-color: #333;
+    padding: 4px 6px;
+}
+
+.score-value {
+    text-align: center;
+    color: #fff;
+    min-width: 64px;
+    background-color: var(--color-bulls-dark-red);
+    padding: 4px 6px;
+}
+
+.active-inning {
+    background-color: var(--color-bulls-red);
+    border: 0;
+}
+
+.inactive-inning {
+    background-color: #ccc;
+}
+
+.inning-container {
+    text-align: center;
+    color: #fff;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: #333;
+    border-left: 2px solid #666;
+}
+
+
+.counts-container {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 120px;
+    background-color: #666;
+    text-align: center;
+    border-left: 2px solid #666;
+}
+
+.counts-top {
+    border-bottom: 2px solid #666;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: #333;
+    height: 45px;
+}
+
+.counts-bottom {
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 45px;
+    background-color: #333;
+}
+
+.counts-bottom > span, .counts-top > span {
+    vertical-align: middle;
+}
