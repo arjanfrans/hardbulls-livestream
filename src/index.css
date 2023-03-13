@@ -2,15 +2,18 @@
     --color-bulls-red: #e20514;
     --color-bulls-dark-red: #a60029;
 }
+
 .scoreboard {
-    font-family: 'Oswald', sans-serif;
+    font-family: Oswald, sans-serif;
     font-size: 32px;
-    width: 460px;
-    border: 2px solid #666;
+    width: 450px;
+    margin-right: auto;
+    height: calc(96px + 120px);
+    overflow: hidden;
 }
 
 .scoreboard-top {
-    border-bottom: 2px solid #666;
+    border: 2px solid #666;
     display: flex;
 }
 

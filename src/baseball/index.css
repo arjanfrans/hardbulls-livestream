@@ -16,7 +16,7 @@
     position: relative;
     width: 64px;
     height: 64px;
-    margin: 24px 0 8px 54px;
+    margin: 24px -8px 8px 54px;
     transform: translateX(-50%) rotate(45deg);
 }
 
@@ -80,6 +80,7 @@
 
 .inning-container {
     text-align: center;
+    width: 64px;
     color: #fff;
     padding-left: 6px;
     padding-right: 6px;

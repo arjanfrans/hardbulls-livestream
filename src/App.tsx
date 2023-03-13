@@ -9,6 +9,8 @@ import {InningHalfEnum} from "./baseball/model/InningHalfEnum";
 import {InningValue} from "./baseball/model/Inning";
 import {Counts} from "./baseball/Counts";
 import {State} from "./baseball/model/State";
+import { SponsorsControl } from "./sponsors/SponsorsControl";
+import { SponsorTicker } from "./sponsors/SponsorTicker";
 
 
 const savedState = localStorage.getItem('state');
@@ -36,6 +38,7 @@ function App() {
     const [outs, setOuts] = useState<number>(initialState.outs);
     const [strikes, setStrikes] = useState<number>(initialState.strikes);
     const [balls, setBalls] = useState<number>(initialState.balls);
+    const [sponsors, setSponsors] = useState<string[]>([]);
     const state: State = useMemo(() => {
         return {
             bases,
@@ -136,6 +139,10 @@ function App() {
 
                     setBases(bases.filter((v) => v !== base));
                 }}
+            />
+            <SponsorTicker images={sponsors}/>
+            <SponsorsControl
+              handleFileUpload={(files) => setSponsors(files)}
             />
         </div>
     );
