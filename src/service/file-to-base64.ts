@@ -5,7 +5,7 @@ const arrayBufferToString = (buffer: ArrayBuffer | string): string => {
 
     return String.fromCharCode.apply(null, Array.from(new Uint16Array(buffer)))
 }
-const convertFileToBase64 = (file: Blob): Promise<string | undefined> => {
+export const convertFileToBase64 = (file: Blob): Promise<string | undefined> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader()
 

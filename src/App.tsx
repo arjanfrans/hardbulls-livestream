@@ -9,8 +9,7 @@ import {InningHalfEnum} from "./baseball/model/InningHalfEnum";
 import {InningValue} from "./baseball/model/Inning";
 import {Counts} from "./baseball/Counts";
 import {State} from "./baseball/model/State";
-import { SponsorsControl } from "./sponsors/SponsorsControl";
-import { SponsorTicker } from "./sponsors/SponsorTicker";
+import { LogoUpload } from "./baseball/LogoUpload";
 
 
 const savedState = localStorage.getItem('state');
@@ -25,7 +24,9 @@ let initialState = savedState ? JSON.parse(savedState) : {
     },
     outs: 0,
     strikes: 0,
-    balls: 0
+    balls: 0,
+    homeLogo: undefined,
+    awayLogo: undefined,
 };
 
 
@@ -38,11 +39,14 @@ function App() {
     const [outs, setOuts] = useState<number>(initialState.outs);
     const [strikes, setStrikes] = useState<number>(initialState.strikes);
     const [balls, setBalls] = useState<number>(initialState.balls);
-    const [sponsors, setSponsors] = useState<string[]>([]);
+    const [homeLogo, setHomeLogo] = useState<string|undefined>(initialState.homeLogo)
+    const [awayLogo, setAwayLogo] = useState<string|undefined>(initialState.awayLogo)
     const state: State = useMemo(() => {
         return {
             bases,
             home,
+            homeLogo,
+            awayLogo,
             away,
             score,
             inning: inning,
@@ -50,7 +54,7 @@ function App() {
             strikes: strikes,
             balls: balls
         }
-    }, [bases, home, away,score, inning, outs,strikes, balls])
+    }, [bases, home, homeLogo, awayLogo, away, score, inning, outs, strikes, balls])
 
     useEffect(() => {
         localStorage.setItem('state', JSON.stringify(state));
@@ -60,90 +64,90 @@ function App() {
         <div className="">
             <div className="scoreboard">
                 <div className="scoreboard-top">
-                    <Score homeName={home} awayName={away} awayScore={score[1]} homeScore={score[0]}></Score>
+                    <Score homeLogo={homeLogo} awayLogo={awayLogo} homeName={home} awayName={away} awayScore={score[1]} homeScore={score[0]}></Score>
                     <Inning inning={inning}/>
                     <Bases loaded={bases}></Bases>
                     <Counts balls={balls} strikes={strikes} outs={outs}/>
                 </div>
             </div>
-            <Control
-                state={state}
-                handleBallClick={() => {
-                    if (balls === 3) {
-                        setBalls(0);
+            <div className="settings-container">
+                <Control
+                    state={state}
+                    handleBallClick={() => {
+                        if (balls === 3) {
+                            setBalls(0);
 
-                        return;
+                            return;
+                        }
+
+                        setBalls(balls + 1);
                     }
-
-                    setBalls(balls + 1);
-                }
-                }
-                handleOutClick={() => {
-                    if (outs === 2) {
-                        setOuts(0);
-
-                        return;
                     }
+                    handleOutClick={() => {
+                        if (outs === 2) {
+                            setOuts(0);
 
-                    setOuts(outs + 1);
-                }
-                }
-                handleStrikeClick={() => {
-                    if (strikes === 2) {
+                            return;
+                        }
+
+                        setOuts(outs + 1);
+                    }
+                    }
+                    handleStrikeClick={() => {
+                        if (strikes === 2) {
+                            setStrikes(0);
+
+                            return;
+                        }
+
+                        setStrikes(strikes + 1);
+                    }
+                    }
+                    handleTeamNameChange={(type, name) => {
+                        if (type === 'home') {
+                            setHome(name);
+
+                            return;
+                        }
+
+                        setAway(name)
+                    }
+                    }
+                    handleClearBases={() => {
+                        setBases([])
+                    }
+                    }
+                    handleResetCountClick={() => {
                         setStrikes(0);
-
-                        return;
+                        setBalls(0)
                     }
-
-                    setStrikes(strikes + 1);
-                }
-                }
-                handleTeamNameChange={(type, name) => {
-                    if (type === 'home') {
-                        setHome(name);
-
-                        return;
                     }
-
-                    setAway(name)
-                }
-                }
-                handleClearBases={() => {
-                    setBases([])
-                }
-                }
-                handleResetCountClick={() => {
-                    setStrikes(0);
-                    setBalls(0)
-                }
-                }
-                handleInningChange={(half, value) => {
-                    setInning({half, value})
-                }
-                }
-                handleScoreChange={(team, value) => {
-                    if (team === 'home') {
-                        setScore([value, score[1]])
-
-                        return;
+                    handleInningChange={(half, value) => {
+                        setInning({half, value})
                     }
-
-                    setScore([score[0], value])
-                }}
-                handleBaseChange={(base, value) => {
-                    if (value) {
-                        setBases([...bases, base]);
-
-                        return;
                     }
+                    handleScoreChange={(team, value) => {
+                        if (team === 'home') {
+                            setScore([value, score[1]])
 
-                    setBases(bases.filter((v) => v !== base));
-                }}
-            />
-            <SponsorTicker images={sponsors}/>
-            <SponsorsControl
-              handleFileUpload={(files) => setSponsors(files)}
-            />
+                            return;
+                        }
+
+                        setScore([score[0], value])
+                    }}
+                    handleBaseChange={(base, value) => {
+                        if (value) {
+                            setBases([...bases, base]);
+
+                            return;
+                        }
+
+                        setBases(bases.filter((v) => v !== base));
+                    }}
+                />
+                <LogoUpload type={'home'} value={homeLogo} handleFileUpload={file => setHomeLogo(file)}/>
+                <LogoUpload type={'away'} value={awayLogo} handleFileUpload={(file) => setAwayLogo(file)}/>
+            </div>
         </div>
     );
 }

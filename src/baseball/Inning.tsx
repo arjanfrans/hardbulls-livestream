@@ -22,13 +22,13 @@ const renderInningSvg = (inningHalf: InningHalfEnum, isCurrent: boolean) => {
 export const Inning = ({inning}: Props) => {
     return (
         <div className="inning-container">
-            <div style={{marginBottom: '-14px'}}>
+            <div style={{marginBottom: '-10px'}}>
                 {renderInningSvg(InningHalfEnum.TOP, inning.half === InningHalfEnum.TOP)}
             </div>
             <div>
                 {inning.value}
             </div>
-            <div style={{marginTop: '-8px'}}>
+            <div style={{marginTop: '-3px'}}>
                 {renderInningSvg(InningHalfEnum.BOTTOM, inning.half === InningHalfEnum.BOTTOM)}
             </div>
         </div>

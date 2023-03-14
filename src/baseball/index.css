@@ -9,7 +9,6 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: #666;
-    width: 220px;
 }
 
 .base-rotate-wrapper {
@@ -52,6 +51,7 @@
 
 .score-row {
     justify-content: space-between;
+    height: 45px;
 }
 
 .score-name {
@@ -59,23 +59,16 @@
     color: #fff;
     background-color: #333;
     padding: 4px 6px;
+    font-family: monospace;
 }
 
 .score-value {
     text-align: center;
-    color: #fff;
+    color: #000;
+    font-weight: bolder;
     min-width: 64px;
-    background-color: var(--color-bulls-dark-red);
-    padding: 4px 6px;
-}
-
-.active-inning {
-    background-color: var(--color-bulls-red);
-    border: 0;
-}
-
-.inactive-inning {
     background-color: #ccc;
+    padding: 4px 6px;
 }
 
 .inning-container {
@@ -94,7 +87,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 120px;
+    width: 150px;
     background-color: #666;
     text-align: center;
     border-left: 2px solid #666;
@@ -117,4 +110,15 @@
 
 .counts-bottom > span, .counts-top > span {
     vertical-align: middle;
+}
+
+.logo {
+    background-color: #333;
+    padding: 2px;
+}
+
+.logo img {
+    width: 64px;
+    filter: drop-shadow(1px 0 0 #000) drop-shadow(0 1px 7px rgb(218 218 218 / 41%));
+    object-fit: scale-down;
 }

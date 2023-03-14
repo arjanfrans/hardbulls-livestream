@@ -1,9 +1,0 @@
-.sponsor-ticker {
-    width: 400px;
-    display: flex;
-    overflow: hidden;
-}
-
-.sponsor-ticker img {
-    object-fit: scale-down;
-}
