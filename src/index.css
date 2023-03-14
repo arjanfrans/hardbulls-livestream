@@ -18,12 +18,15 @@
 }
 
 .control-container {
-    margin-top: 32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .settings-container {
+    padding: 5px;
+    margin-top: 100px;
+    background-color: white;
     width: 400px;
+    bottom: 0;
 }
