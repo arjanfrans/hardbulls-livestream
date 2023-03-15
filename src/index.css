@@ -3,6 +3,10 @@
     --color-bulls-dark-red: #a60029;
 }
 
+body {
+    margin: 0;
+  }
+
 .scoreboard {
     font-family: sans-serif;
     font-size: 32px;
@@ -10,6 +14,7 @@
     display: flex;
     margin-right: auto;
     overflow: hidden;
+    margin: 32px;
 }
 
 .scoreboard-top {
@@ -29,4 +34,10 @@
     background-color: white;
     width: 400px;
     bottom: 0;
+}
+
+input.large-checkbox {
+    width: 32px;
+    height: 32px;
+    appearance: auto;
 }

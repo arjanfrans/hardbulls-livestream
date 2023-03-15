@@ -94,19 +94,19 @@ export const Control = ({
             <div style={{display: 'flex'}}>
                 <div>1B</div>
                 <div>
-                    <input type="checkbox"
+                    <input className="large-checkbox" type="checkbox"
                            checked={state.bases.includes(BaseEnum.FIRST)}
                            onChange={(event) => handleBaseChange(BaseEnum.FIRST, event.currentTarget.checked)}/>
                 </div>
                 <div>2B</div>
                 <div>
-                    <input type="checkbox"
+                    <input className="large-checkbox" type="checkbox"
                            checked={state.bases.includes(BaseEnum.SECOND)}
                            onChange={(event) => handleBaseChange(BaseEnum.SECOND, event.currentTarget.checked)}/>
                 </div>
                 <div>3B</div>
                 <div>
-                    <input type="checkbox"
+                    <input className="large-checkbox" type="checkbox"
                            checked={state.bases.includes(BaseEnum.THIRD)}
                            onChange={(event) => handleBaseChange(BaseEnum.THIRD, event.currentTarget.checked)}/>
                 </div>
