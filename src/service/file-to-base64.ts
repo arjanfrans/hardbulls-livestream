@@ -1,33 +1,21 @@
-const arrayBufferToString = (buffer: ArrayBuffer | string): string => {
-    if (typeof buffer === "string") {
-        return buffer
-    }
+import { arrayBufferToString } from "./array-buffer-to-string"
 
-    return String.fromCharCode.apply(null, Array.from(new Uint16Array(buffer)))
-}
-export const convertFileToBase64 = (file: Blob): Promise<string | undefined> => {
+export const convertFileToBase64 = (file: Blob): Promise<string> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader()
 
         reader.readAsDataURL(file)
         reader.onload = () => {
-            resolve(reader.result ? arrayBufferToString(reader.result) : undefined)
+            if (reader.result) {
+                resolve(arrayBufferToString(reader.result))
+
+                return
+            }
+
+            reject(new Error("Cannot load file."))
         }
         reader.onerror = (error) => {
             reject(error)
         }
     })
-}
-export const convertFilesToBase64 = async (files: FileList): Promise<string[]> => {
-    const base64Files: string[] = []
-
-    for (const file of Array.from(files)) {
-        const base64File = await convertFileToBase64(file)
-
-        if (base64File) {
-            base64Files.push(base64File)
-        }
-    }
-
-    return base64Files
 }

@@ -11,7 +11,7 @@ export const FilterColor = ({filterColor, handleFilterColorChange}: Props) => {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div>Filter color</div>
+        <div>Filter color (greenscreen: 0, 255, 0)</div>
         <div>
           <input
             type="color"

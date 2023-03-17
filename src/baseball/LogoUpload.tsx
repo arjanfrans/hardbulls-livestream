@@ -1,4 +1,5 @@
 import { convertFileToBase64 } from "../service/file-to-base64";
+import { resizeImage } from "../service/image-resize";
 
 interface Props {
   type: 'home'|'away',
@@ -7,6 +8,10 @@ interface Props {
 }
 
 export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
+  const convertAndResizeImage = async (file: File) => {
+    return await resizeImage(100, await convertFileToBase64(file));
+  }
+
   return (
     <div style={{display: 'flex', justifyContent: 'space-between'}}>
       <div>
@@ -20,7 +25,7 @@ export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
             const files = event.target.files;
 
             if (files && files[0]) {
-              handleFileUpload(await convertFileToBase64(files[0]));
+              handleFileUpload(await convertAndResizeImage(files[0]));
             }
           }}
         />
