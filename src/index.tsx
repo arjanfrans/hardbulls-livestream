@@ -5,9 +5,13 @@ import './baseball/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const rootElement = document.createElement('_scoreboard_root')
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  rootElement
 );
+
+document.body.append(rootElement);
+
 root.render(
   <React.StrictMode>
     <App />

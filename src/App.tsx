@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { Bases } from "./baseball/Bases";
 import { useState } from "react";
-import { BaseEnum } from "./baseball/model/BasesEnum";
 import { Control } from "./baseball/Control";
 import { Score } from "./baseball/Score";
 import { Inning } from "./baseball/Inning";
 import { InningHalfEnum } from "./baseball/model/InningHalfEnum";
-import { InningValue } from "./baseball/model/Inning";
 import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
 import { FilterColor } from "./baseball/FilterColor";
-
+import { ObserveControl } from "./ObserveControl";
+import { ObserveSettings } from "./ObserveSettings";
+import { observeElements } from "./observe";
 
 const savedState = localStorage.getItem("state");
 let initialState = savedState ? JSON.parse(savedState) : {
@@ -33,130 +33,181 @@ let initialState = savedState ? JSON.parse(savedState) : {
 
 
 function App() {
-  const [bases, setBases] = useState<BaseEnum[]>(initialState.bases);
-  const [home, setHome] = useState<string>(initialState.home);
+  const [observe, setObserve] = useState<boolean>(false);
+  const [observeSettings, setObserveSettings] = useState<ObserveSettings>({});
   const [away, setAway] = useState<string>(initialState.away);
-  const [score, setScore] = useState<[number, number]>(initialState.score);
-  const [inning, setInning] = useState<InningValue>(initialState.inning);
-  const [outs, setOuts] = useState<number>(initialState.outs);
-  const [strikes, setStrikes] = useState<number>(initialState.strikes);
-  const [balls, setBalls] = useState<number>(initialState.balls);
   const [homeLogo, setHomeLogo] = useState<string | undefined>(initialState.homeLogo);
   const [awayLogo, setAwayLogo] = useState<string | undefined>(initialState.awayLogo);
   const [filterColor, setFilterColor] = useState<string>(initialState.filterColor);
-  const state: State = useMemo(() => {
-    return {
-      bases,
-      home,
-      homeLogo,
-      awayLogo,
-      away,
-      score,
-      inning,
-      outs,
-      strikes,
-      balls,
-      filterColor
-    };
-  }, [bases, home, homeLogo, awayLogo, away, score, inning, outs, strikes, balls, filterColor]);
+
+  const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(state));
   }, [state]);
 
   useEffect(() => {
-    document.body.style.backgroundColor = filterColor
+    const containerElement = document.querySelector('.app-container') as HTMLElement
+
+    if (containerElement) {
+      containerElement.style.backgroundColor = filterColor;
+    }
   }, [filterColor])
 
+  useEffect(() => {
+    if (observe) {
+      observeElements(observeSettings, (key, value) => {
+        setState({
+          ...state,
+          [key]: value
+        })
+      })
+    }
+  }, [observe, observeSettings, state]);
+
   return (
-    <div className="">
+    <div className="app-container">
       <div className="scoreboard">
         <div className="scoreboard-top">
-          <Score homeLogo={homeLogo} awayLogo={awayLogo} homeName={home} awayName={away} awayScore={score[1]}
-                 homeScore={score[0]}></Score>
-          <Inning inning={inning} />
-          <Bases loaded={bases}></Bases>
-          <Counts balls={balls} strikes={strikes} outs={outs} />
+          <Score homeLogo={homeLogo} awayLogo={awayLogo} homeName={state.home} awayName={away} awayScore={state.score[1]}
+                 homeScore={state.score[0]}></Score>
+          <Inning inning={state.inning} />
+          <Bases loaded={state.bases}></Bases>
+          <Counts balls={state.balls} strikes={state.strikes} outs={state.outs} />
         </div>
       </div>
       <div className="settings-container">
         <Control
           state={state}
           handleBallClick={() => {
-            if (balls === 3) {
-              setBalls(0);
+            if (state.balls === 3) {
+              setState({
+                ...state,
+                balls: 0
+              })
 
               return;
             }
 
-            setBalls(balls + 1);
+            setState({
+              ...state,
+              balls: state.balls + 1
+            })
           }
           }
           handleOutClick={() => {
-            if (outs === 2) {
-              setOuts(0);
+            if (state.outs === 2) {
+              setState({
+                ...state,
+                outs: 0
+              });
 
               return;
             }
 
-            setOuts(outs + 1);
+            setState({
+              ...state,
+              outs: state.outs + 1
+            })
           }
           }
           handleStrikeClick={() => {
-            if (strikes === 2) {
-              setStrikes(0);
+            if (state.strikes === 2) {
+              setState({
+                ...state,
+                strikes: 0
+              })
 
               return;
             }
 
-            setStrikes(strikes + 1);
+            setState({
+              ...state,
+              strikes: state.strikes + 1
+            })
           }
           }
           handleTeamNameChange={(type, name) => {
             if (type === "home") {
-              setHome(name);
+              setState({
+                ...state,
+                home: name
+              })
 
               return;
             }
 
             setAway(name);
+
+            setState({
+              ...state,
+              away: name
+            })
           }
           }
           handleClearBases={() => {
-            setBases([]);
+            setState({
+              ...state,
+              bases: []
+            })
           }
           }
           handleResetCountClick={() => {
-            setStrikes(0);
-            setBalls(0);
+            setState({
+              ...state,
+              strikes: 0,
+              balls: 0
+            })
           }
           }
           handleInningChange={(half, value) => {
-            setInning({ half, value });
-          }
-          }
+            setState({
+              ...state,
+              inning: { half, value }
+            })
+          }}
           handleScoreChange={(team, value) => {
             if (team === "home") {
-              setScore([value, score[1]]);
+              setState({
+                ...state,
+                score: [value, state.score[1]]
+              })
 
               return;
             }
 
-            setScore([score[0], value]);
+            setState({
+              ...state,
+              score: [state.score[0], value]
+            })
           }}
           handleBaseChange={(base, value) => {
             if (value) {
-              setBases([...bases, base]);
+              setState({
+                ...state,
+                bases: [...state.bases, base]
+              })
 
               return;
             }
 
-            setBases(bases.filter((v) => v !== base));
+            setState({
+              ...state,
+              bases: state.bases.filter((v) => v !== base)
+            });
           }}
         />
         <LogoUpload type={"home"} value={homeLogo} handleFileUpload={file => setHomeLogo(file)} />
         <LogoUpload type={"away"} value={awayLogo} handleFileUpload={(file) => setAwayLogo(file)} />
         <FilterColor filterColor={filterColor} handleFilterColorChange={(color) => setFilterColor(color)} />
+        <hr/>
+
+        <button onClick={() => setObserve(!observe) }>Follow Ticker</button><br/>
+        <ObserveControl handleElementChange={(key, value) => setObserveSettings({
+          ...observeSettings,
+          [key]: value
+        })}
+        />
       </div>
     </div>
   );

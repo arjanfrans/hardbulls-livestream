@@ -5,7 +5,11 @@
 
 body {
     margin: 0;
-  }
+}
+
+.app-container {
+    padding-top: 32px;
+}
 
 .scoreboard {
     font-family: sans-serif;
