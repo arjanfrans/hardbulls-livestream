@@ -1,3 +1,5 @@
+import { State } from "./model/State";
+
 interface Props {
     strikes: number;
     balls: number;

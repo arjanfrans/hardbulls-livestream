@@ -8,10 +8,9 @@ import { InningHalfEnum } from "./baseball/model/InningHalfEnum";
 import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
-import { FilterColor } from "./baseball/FilterColor";
 import { ObserveControl } from "./ObserveControl";
-import { ObserveSettings } from "./ObserveSettings";
 import { observeElements } from "./observe";
+import { DisplayControl } from "./DisplayControl";
 
 const savedState = localStorage.getItem("state");
 let initialState = savedState ? JSON.parse(savedState) : {
@@ -28,18 +27,22 @@ let initialState = savedState ? JSON.parse(savedState) : {
   balls: 0,
   homeLogo: undefined,
   awayLogo: undefined,
-  filterColor: "#00ff00"
+  filterColor: "#00ff00",
+  observe: false,
+  hideBases: false,
+  hideCounts: false,
+  observeSettings: {
+    home: '',
+    away: '',
+    outs: '',
+    inning: '',
+    strikes: '',
+    balls: ''
+  }
 };
 
 
 function App() {
-  const [observe, setObserve] = useState<boolean>(false);
-  const [observeSettings, setObserveSettings] = useState<ObserveSettings>({});
-  const [away, setAway] = useState<string>(initialState.away);
-  const [homeLogo, setHomeLogo] = useState<string | undefined>(initialState.homeLogo);
-  const [awayLogo, setAwayLogo] = useState<string | undefined>(initialState.awayLogo);
-  const [filterColor, setFilterColor] = useState<string>(initialState.filterColor);
-
   const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
@@ -50,30 +53,30 @@ function App() {
     const containerElement = document.querySelector('.app-container') as HTMLElement
 
     if (containerElement) {
-      containerElement.style.backgroundColor = filterColor;
+      containerElement.style.backgroundColor = state.filterColor;
     }
-  }, [filterColor])
+  }, [state])
 
   useEffect(() => {
-    if (observe) {
-      observeElements(observeSettings, (key, value) => {
+    if (state.observe) {
+      observeElements(state.observeSettings, (key, value) => {
         setState({
           ...state,
           [key]: value
         })
       })
     }
-  }, [observe, observeSettings, state]);
+  }, [state]);
 
   return (
     <div className="app-container">
       <div className="scoreboard">
         <div className="scoreboard-top">
-          <Score homeLogo={homeLogo} awayLogo={awayLogo} homeName={state.home} awayName={away} awayScore={state.score[1]}
+          <Score homeLogo={state.homeLogo} awayLogo={state.awayLogo} homeName={state.home} awayName={state.away} awayScore={state.score[1]}
                  homeScore={state.score[0]}></Score>
           <Inning inning={state.inning} />
-          <Bases loaded={state.bases}></Bases>
-          <Counts balls={state.balls} strikes={state.strikes} outs={state.outs} />
+          {!state.hideBases && <Bases loaded={state.bases}></Bases>}
+          {!state.hideCounts && <Counts balls={state.balls} strikes={state.strikes} outs={state.outs} /> }
         </div>
       </div>
       <div className="settings-container">
@@ -137,8 +140,6 @@ function App() {
               return;
             }
 
-            setAway(name);
-
             setState({
               ...state,
               away: name
@@ -197,15 +198,18 @@ function App() {
             });
           }}
         />
-        <LogoUpload type={"home"} value={homeLogo} handleFileUpload={file => setHomeLogo(file)} />
-        <LogoUpload type={"away"} value={awayLogo} handleFileUpload={(file) => setAwayLogo(file)} />
-        <FilterColor filterColor={filterColor} handleFilterColorChange={(color) => setFilterColor(color)} />
+        <LogoUpload type={"home"} value={state.homeLogo} handleFileUpload={file => setState({...state, homeLogo: file })} />
+        <LogoUpload type={"away"} value={state.awayLogo} handleFileUpload={(file) => setState({...state, awayLogo: file})} />
         <hr/>
 
-        <button onClick={() => setObserve(!observe) }>Follow Ticker</button><br/>
-        <ObserveControl handleElementChange={(key, value) => setObserveSettings({
-          ...observeSettings,
-          [key]: value
+        <button onClick={() => setState({...state, observe: !state.observe }) }>Follow Ticker</button><br/>
+        <DisplayControl state={state} handleChange={(key, value) => setState({...state, [key]: value})}/>
+        <ObserveControl state={state} handleElementChange={(key, value) => setState({
+          ...state,
+          observeSettings: {
+            ...state.observeSettings,
+            [key]: value
+          }
         })}
         />
       </div>

@@ -3,7 +3,7 @@ name: Deploy build
 on:
   push:
     branches: [ "main" ]
- 
+
 
 jobs:
 
@@ -28,7 +28,7 @@ jobs:
     - name: Build
       run: |
         npm ci
-        npm run build
+        npm run build-extension
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact

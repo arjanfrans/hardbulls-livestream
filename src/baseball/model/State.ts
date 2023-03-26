@@ -1,5 +1,6 @@
 import { BaseEnum } from "./BasesEnum"
 import { InningValue } from "./Inning"
+import { ObserveSettings } from "../../ObserveSettings"
 
 export interface State {
     bases: BaseEnum[]
@@ -10,4 +11,12 @@ export interface State {
     outs: number
     strikes: number
     balls: number
+    homeLogo?: string
+    awayLogo?: string
+    observe: boolean
+
+    filterColor: string
+    hideBases: false
+    hideCounts: false
+    observeSettings: ObserveSettings
 }
