@@ -212,6 +212,7 @@ function App() {
           }
         })}
         />
+        <a href="extension/extension.zip">Download Chrome extension</a>
       </div>
     </div>
   );

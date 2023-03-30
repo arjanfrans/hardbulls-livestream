@@ -29,6 +29,7 @@ jobs:
       run: |
         npm ci
         npm run build-extension
+        cd build/extension && zip -r -q extension.zip . * && cd -
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
