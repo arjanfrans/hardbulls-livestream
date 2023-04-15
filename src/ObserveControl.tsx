@@ -46,6 +46,24 @@ export const ObserveControl = ({state, handleElementChange, handleDelayChange}: 
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Base1 Element</div>
+        <div>
+          <input type="text" value={state.observeSettings.base1} onChange={(event) => handleElementChange('base1', event.target.value)}></input>
+        </div>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Base2 Element</div>
+        <div>
+          <input type="text" value={state.observeSettings.base2} onChange={(event) => handleElementChange('base2', event.target.value)}></input>
+        </div>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Base3 Element</div>
+        <div>
+          <input type="text" value={state.observeSettings.base3} onChange={(event) => handleElementChange('base3', event.target.value)}></input>
+        </div>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>Ticker Delay</div>
         <div>
           <input type="text" value={state.observerDelay} onChange={(event) => handleDelayChange(Number.parseInt(event.target.value))}></input>

@@ -5,4 +5,7 @@ export interface ObserveSettings {
     inning?: string
     strikes?: string
     balls?: string
+    base1?: string
+    base2?: string
+    base3?: string
 }

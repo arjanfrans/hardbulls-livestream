@@ -24,41 +24,51 @@ export const observeElements = (
     const inningElement = addElement(settings, "inning")
     const strikesElement = addElement(settings, "strikes")
     const ballsElement = addElement(settings, "balls")
+    // const base1Element = addElement(settings, "base1")
+    // const base2Element = addElement(settings, "base2")
+    // const base3Element = addElement(settings, "base3")
 
     if (!observer) {
         observer = new MutationObserver((mutationList) => {
             mutationList.forEach((mutation) => {
                 const target = mutation.target
-                const update = (element: string, value: string) => {
-                    setTimeout(() => {
-                        updateState(element, value)
-                    }, delay)
-                }
 
                 if (target === homeElement) {
-                    update("home", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("home", target.textContent || "")
+                    }, delay)
 
                     return
                 }
 
                 if (target === awayElement) {
-                    update("away", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("away", target.textContent || "")
+                    }, delay)
                 }
 
                 if (target === outsElement) {
-                    update("outs", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("outs", target.textContent || "")
+                    }, delay)
                 }
 
                 if (target === inningElement) {
-                    update("inning", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("inning", target.textContent || "")
+                    }, delay)
                 }
 
                 if (target === strikesElement) {
-                    update("strikes", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("strikes", target.textContent || "")
+                    }, delay)
                 }
 
                 if (target === ballsElement) {
-                    update("balls", target.textContent || "")
+                    setTimeout(() => {
+                        updateState("balls", target.textContent || "")
+                    }, delay)
                 }
             })
         })
