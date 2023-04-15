@@ -31,6 +31,7 @@ let initialState = savedState ? JSON.parse(savedState) : {
   observe: false,
   hideBases: false,
   hideCounts: false,
+  observerDelay: 0,
   observeSettings: {
     home: '',
     away: '',
@@ -59,7 +60,7 @@ function App() {
 
   useEffect(() => {
     if (state.observe) {
-      observeElements(state.observeSettings, (key, value) => {
+      observeElements(state.observerDelay, state.observeSettings, (key, value) => {
         setState({
           ...state,
           [key]: value
@@ -204,7 +205,9 @@ function App() {
 
         <button onClick={() => setState({...state, observe: !state.observe }) }>Follow Ticker</button><br/>
         <DisplayControl state={state} handleChange={(key, value) => setState({...state, [key]: value})}/>
-        <ObserveControl state={state} handleElementChange={(key, value) => setState({
+        <ObserveControl state={state}
+          handleDelayChange={(value) => setState({...state, observerDelay: value})}
+          handleElementChange={(key, value) => setState({
           ...state,
           observeSettings: {
             ...state.observeSettings,

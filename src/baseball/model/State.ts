@@ -14,7 +14,7 @@ export interface State {
     homeLogo?: string
     awayLogo?: string
     observe: boolean
-
+    observerDelay: number
     filterColor: string
     hideBases: false
     hideCounts: false

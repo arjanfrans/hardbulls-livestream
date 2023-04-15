@@ -13,7 +13,11 @@ const addElement = (settings: ObserveSettings, key: keyof ObserveSettings) => {
     }
 }
 
-export const observeElements = (settings: ObserveSettings, updateState: (key: string, value: string) => void) => {
+export const observeElements = (
+    delay: number,
+    settings: ObserveSettings,
+    updateState: (key: string, value: string) => void
+) => {
     const homeElement = addElement(settings, "home")
     const awayElement = addElement(settings, "away")
     const outsElement = addElement(settings, "outs")
@@ -25,31 +29,36 @@ export const observeElements = (settings: ObserveSettings, updateState: (key: st
         observer = new MutationObserver((mutationList) => {
             mutationList.forEach((mutation) => {
                 const target = mutation.target
+                const update = (element: string, value: string) => {
+                    setTimeout(() => {
+                        updateState(element, value)
+                    }, delay)
+                }
 
                 if (target === homeElement) {
-                    updateState("home", target.textContent || "")
+                    update("home", target.textContent || "")
 
                     return
                 }
 
                 if (target === awayElement) {
-                    updateState("away", target.textContent || "")
+                    update("away", target.textContent || "")
                 }
 
                 if (target === outsElement) {
-                    updateState("outs", target.textContent || "")
+                    update("outs", target.textContent || "")
                 }
 
                 if (target === inningElement) {
-                    updateState("inning", target.textContent || "")
+                    update("inning", target.textContent || "")
                 }
 
                 if (target === strikesElement) {
-                    updateState("strikes", target.textContent || "")
+                    update("strikes", target.textContent || "")
                 }
 
                 if (target === ballsElement) {
-                    updateState("balls", target.textContent || "")
+                    update("balls", target.textContent || "")
                 }
             })
         })

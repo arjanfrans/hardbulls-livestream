@@ -2,10 +2,11 @@ import { State } from "./baseball/model/State";
 
 interface Props {
   state: State;
+  handleDelayChange: (value: number) => void;
   handleElementChange: (key: string, value: string) => void;
 }
 
-export const ObserveControl = ({state, handleElementChange}: Props) => {
+export const ObserveControl = ({state, handleElementChange, handleDelayChange}: Props) => {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -42,6 +43,12 @@ export const ObserveControl = ({state, handleElementChange}: Props) => {
         <div>Balls Element</div>
         <div>
           <input type="text" value={state.observeSettings.balls} onChange={(event) => handleElementChange('balls', event.target.value)}></input>
+        </div>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Ticker Delay</div>
+        <div>
+          <input type="text" value={state.observerDelay} onChange={(event) => handleDelayChange(Number.parseInt(event.target.value))}></input>
         </div>
       </div>
     </div>
