@@ -34,15 +34,9 @@ export const ObserveControl = ({state, handleElementChange, handleDelayChange}: 
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div>Strikes Element</div>
+        <div>Counts Element</div>
         <div>
-          <input type="text" value={state.observeSettings.strikes} onChange={(event) => handleElementChange('strikes', event.target.value)}></input>
-        </div>
-      </div>
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div>Balls Element</div>
-        <div>
-          <input type="text" value={state.observeSettings.balls} onChange={(event) => handleElementChange('balls', event.target.value)}></input>
+          <input type="text" value={state.observeSettings.counts} onChange={(event) => handleElementChange('counts', event.target.value)}></input>
         </div>
       </div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>

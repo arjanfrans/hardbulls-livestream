@@ -3,8 +3,7 @@ export interface ObserveSettings {
     away?: string
     outs?: string
     inning?: string
-    strikes?: string
-    balls?: string
+    counts?: string
     base1?: string
     base2?: string
     base3?: string

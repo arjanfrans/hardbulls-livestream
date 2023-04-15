@@ -22,8 +22,7 @@ export const observeElements = (
     const awayElement = addElement(settings, "away")
     const outsElement = addElement(settings, "outs")
     const inningElement = addElement(settings, "inning")
-    const strikesElement = addElement(settings, "strikes")
-    const ballsElement = addElement(settings, "balls")
+    const countsElement = addElement(settings, "counts")
     // const base1Element = addElement(settings, "base1")
     // const base2Element = addElement(settings, "base2")
     // const base3Element = addElement(settings, "base3")
@@ -49,7 +48,9 @@ export const observeElements = (
 
                 if (target === outsElement) {
                     setTimeout(() => {
-                        updateState("outs", target.textContent || "")
+                        const [outs] = (target.textContent || "").split(" ")
+
+                        updateState("outs", outs || "")
                     }, delay)
                 }
 
@@ -59,15 +60,11 @@ export const observeElements = (
                     }, delay)
                 }
 
-                if (target === strikesElement) {
+                if (target === countsElement) {
                     setTimeout(() => {
-                        updateState("strikes", target.textContent || "")
-                    }, delay)
-                }
-
-                if (target === ballsElement) {
-                    setTimeout(() => {
-                        updateState("balls", target.textContent || "")
+                        const [balls, strikes] = (target.textContent || "").split("-")
+                        updateState("strikes", strikes || "")
+                        updateState("balls", balls || "")
                     }, delay)
                 }
             })
