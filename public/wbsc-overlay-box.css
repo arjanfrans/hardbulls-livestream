@@ -195,9 +195,11 @@ body {
 }
 
 
-.cookie-bar {
+
+#cookie-bar, #cookie-bar-prompt {
     display: none !important;
 }
+
 
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.pitch-indicator>div.base.is-active {
     background-color: var(--primary)
