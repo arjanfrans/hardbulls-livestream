@@ -1,4 +1,3 @@
-
 @font-face {
     font-display: swap;
     font-family: Brush Script Std;
@@ -32,23 +31,26 @@
 }
 
 :root {
-  --large-font-size: 38px;
-  --primary: #ffffff;
-  --bg-gray: #d3d3d3;
+    --large-font-size: 38px;
+    --primary: #e20514;
+    --bg-gray: #d3d3d3;
 }
 
 body {
     background-color: rgba(0, 255, 0, 1) !important;
 }
 
-#app > div {
+#app>div {
     background-image: none !important;
     background-color: rgba(0, 255, 0, 1) !important;
 }
 
 
-.box-score-top-bar p,.box-score-top-bar span, .box-score-top-bar a, .box-score-top-bar div::before {
-    font-family: Neue Aachen Bold,sans-serif;
+.box-score-top-bar p,
+.box-score-top-bar span,
+.box-score-top-bar a,
+.box-score-top-bar div::before {
+    font-family: Neue Aachen Bold, sans-serif;
 }
 
 .box-score-top-bar .game-over-marquee {
@@ -94,7 +96,7 @@ body {
     display: none;
 }
 
-.box-score-top-bar > div.left-box > a.back-to-schedule {
+.box-score-top-bar>div.left-box>a.back-to-schedule {
     display: none !important;
 }
 
@@ -104,7 +106,7 @@ body {
     align-items: center;
 }
 
-.box-score-top-bar > div.left-box > div > div:nth-child(1) > span {
+.box-score-top-bar>div.left-box>div>div:nth-child(1)>span {
     width: 70px;
     background-color: #d3d3d3;
     padding: 5px;
@@ -112,7 +114,7 @@ body {
     display: flex;
 }
 
-.box-score-top-bar > div.left-box > div > div:nth-child(3) > span {
+.box-score-top-bar>div.left-box>div>div:nth-child(3)>span {
     width: 70px;
     background-color: var(--bg-gray);
     padding: 5px;
@@ -120,49 +122,50 @@ body {
     display: flex;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > span {
+.box-score-top-bar>div.left-box>div.indicators-container>span {
     display: none;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container {
+.box-score-top-bar>div.left-box>div.indicators-container {
     padding: 0 !important;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > div {
+.box-score-top-bar>div.left-box>div.indicators-container>div {
     height: 100%;
 }
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.inning-indicator {
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: var(--bg-gray);
-  padding: 5px;
-  height: 100%;
-  display: flex;
-  align-items: center;
+
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--bg-gray);
+    padding: 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.inning-indicator > p {
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator>p {
     font-size: 54px;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.inning-indicator .triangle {
- left: 3px !important;
- border-bottom: 6px solid #e20514 !important;
- zoom: 3;
- margin-left: 2px;
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator .triangle {
+    left: 3px !important;
+    border-bottom: 6px solid #e20514 !important;
+    zoom: 3;
+    margin-left: 2px;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.inning-indicator .triangle.bot {
-  bottom: 7px;
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator .triangle.bot {
+    bottom: 7px;
 }
 
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.inning-indicator .triangle.top {
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator .triangle.top {
     top: 5px;
-  }
-     
-   
+}
 
-.box-score-top-bar > div.left-box > div.indicators-container > div > div.pitch-indicator {
+
+
+.box-score-top-bar>div.left-box>div.indicators-container>div>div.pitch-indicator {
     zoom: 4;
     height: 100%;
     margin-right: 3px;
@@ -172,22 +175,22 @@ body {
     display: none !important;
 }
 
-#app > div > div.box-score-top-bar > div.center-box > div > div.tournament {
+#app>div>div.box-score-top-bar>div.center-box>div>div.tournament {
     display: none !important;
 }
 
-#app > div > div.box-score-top-bar > div.left-box > div.indicators-container > div > div.outs-indicator {
+#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator {
     width: 120px;
     font-size: var(--large-font-size)
 }
 
-#app > div > div.box-score-top-bar > div.left-box > div.indicators-container > div > div.outs-indicator > p:nth-child(1),
-#app > div > div.box-score-top-bar > div.left-box > div.indicators-container > div > div.outs-indicator > p:nth-child(2) {
+#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(1),
+#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(2) {
     padding: 10px;
     background-color: var(--bg-gray);
 }
 
-#app > div > div.box-score-top-bar > div.left-box > div.indicators-container > div > div.outs-indicator > p:nth-child(2) {
+#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(2) {
     margin-top: 10px;
 }
 
@@ -196,6 +199,6 @@ body {
     display: none !important;
 }
 
-.base.is-active {
+#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.pitch-indicator>div.base.is-active {
     background-color: var(--primary)
 }
