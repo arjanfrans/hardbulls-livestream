@@ -1,0 +1,52 @@
+:root {
+    --large-font-size: 38px;
+    --primary: #e20514;
+    --bg-gray: #d3d3d3;
+}
+
+body {
+    background-color: rgba(0, 255, 0, 1) !important;
+}
+
+#app>div {
+    background-image: none !important;
+    background-color: rgba(0, 255, 0, 1) !important;
+}
+
+.live-data {
+    background-color: #ffffff;
+}
+
+.innings-table {
+    display: none !important;
+}
+
+div.player-image.player-picture {
+    display: none !important;
+}
+
+.actual-players p {
+    margin: 0;
+
+}
+
+.actual-player .player-stats > a {
+    display: none !important;
+}
+div.actual-players div.player-stats > a {
+    display: none !important;
+}
+
+div.actual-players div.player-stats > p.role-and-stats {
+    color: var(--primary) !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+div.event-banner {
+    display: none !important;
+}
+
+#cookie-bar, #cookie-bar-prompt {
+    display: none !important;
+}
