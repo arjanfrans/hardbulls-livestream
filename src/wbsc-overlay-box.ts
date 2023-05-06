@@ -24,16 +24,16 @@ export const WBSC_OVERLAY_BOX = (
     background-image: url("${homeLogo}");
     background-size: contain;
     background-repeat: no-repeat;
-    padding-left: 60px;
+    padding-left: 70px;
 }
 
 .box-score-top-bar>div.left-box>div>div:nth-child(3)::before {
-    content: ${away};
+    content: "${away}";
     margin-right: 10px;
     background-image: url("${awayLogo}");
     background-size: contain;
     background-repeat: no-repeat;
-    padding-left: 60px;
+    padding-left: 70px;
 }
 
 :root {
