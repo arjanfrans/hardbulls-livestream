@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Bases } from "./baseball/Bases";
-import { useState } from "react";
 import { Control } from "./baseball/Control";
 import { Score } from "./baseball/Score";
 import { Inning } from "./baseball/Inning";
@@ -8,9 +7,8 @@ import { InningHalfEnum } from "./baseball/model/InningHalfEnum";
 import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
-import { ObserveControl } from "./ObserveControl";
-import { observeElements } from "./observe";
 import { DisplayControl } from "./DisplayControl";
+import { CssGenerator } from "./CssGenerator";
 
 const savedState = localStorage.getItem("state");
 let initialState = savedState ? JSON.parse(savedState) : {
@@ -31,15 +29,6 @@ let initialState = savedState ? JSON.parse(savedState) : {
   observe: false,
   hideBases: false,
   hideCounts: false,
-  observerDelay: 0,
-  observeSettings: {
-    home: '',
-    away: '',
-    outs: '',
-    inning: '',
-    strikes: '',
-    balls: ''
-  }
 };
 
 
@@ -57,17 +46,6 @@ function App() {
       containerElement.style.backgroundColor = state.filterColor;
     }
   }, [state])
-
-  useEffect(() => {
-    if (state.observe) {
-      observeElements(state.observerDelay, state.observeSettings, (key, value) => {
-        setState({
-          ...state,
-          [key]: value
-        })
-      })
-    }
-  }, [state]);
 
   return (
     <div className="app-container">
@@ -203,20 +181,10 @@ function App() {
         <LogoUpload type={"away"} value={state.awayLogo} handleFileUpload={(file) => setState({...state, awayLogo: file})} />
         <hr/>
 
-        <button onClick={() => setState({...state, observe: !state.observe }) }>Follow Ticker</button><br/>
         <DisplayControl state={state} handleChange={(key, value) => setState({...state, [key]: value})}/>
-        <ObserveControl state={state}
-          handleDelayChange={(value) => setState({...state, observerDelay: value})}
-          handleElementChange={(key, value) => setState({
-          ...state,
-          observeSettings: {
-            ...state.observeSettings,
-            [key]: value
-          }
-        })}
-        />
-        <a href="extension/extension.zip">Download Chrome extension</a>
       </div>
+
+      <CssGenerator state={state}/>
     </div>
   );
 }
