@@ -3,7 +3,11 @@ export const WBSC_OVERLAY_BOX = (
     away: string,
     homeLogo: string,
     awayLogo: string,
-    filterColor: string
+    filterColor: string,
+    awayGradient: [string, string],
+    homeGradient: [string, string],
+    layoutGradient: [string, string],
+    backgroundGradient: [string, string]
 ) => `
 @font-face {
     font-display: swap;
@@ -19,27 +23,37 @@ export const WBSC_OVERLAY_BOX = (
 }
 
 .box-score-top-bar>div.left-box>div>div:nth-child(1)::before {
-    content: "${home}";
-    margin-right: 10px;
-    background-image: url("${homeLogo}");
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-left: 70px;
-}
-
-.box-score-top-bar>div.left-box>div>div:nth-child(3)::before {
     content: "${away}";
     margin-right: 10px;
     background-image: url("${awayLogo}");
     background-size: contain;
     background-repeat: no-repeat;
-    padding-left: 70px;
+    padding-left: 78px;
+    margin-left: 4px;
+    color: #f3f3f3;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+.box-score-top-bar>div.left-box>div>div:nth-child(3)::before {
+    content: "${home}";
+    margin-right: 10px;
+    background-image: url("${homeLogo}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 78px;
+    margin-left: 4px;
+    color: #f3f3f3;
+    filter: drop-shadow(2px 2px 2px black);
 }
 
 :root {
     --large-font-size: 38px;
     --primary: #e20514;
     --bg-gray: #d3d3d3;
+    --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
+    --away-gradient: linear-gradient(0deg, ${awayGradient[0]}ff 0%, ${awayGradient[1]}ff 100%);
+    --layout-gradient: linear-gradient(0deg, ${layoutGradient[0]}ff 0%, ${layoutGradient[1]}ff 100%);
+    --background-gradient: linear-gradient(0deg, ${backgroundGradient[0]}ff 0%, ${backgroundGradient[1]}ff 100%);
 }
 
 body {
@@ -70,6 +84,14 @@ body {
     justify-content: space-between;
 }
 
+.box-score-top-bar .actual-teams > div:nth-child(1) {
+    background: var(--away-gradient);
+}
+
+.box-score-top-bar .actual-teams > div:nth-child(3) {
+    background: var(--home-gradient);
+}
+
 
 .center-box {
     display: none !important;
@@ -90,12 +112,14 @@ body {
 
 .box-score-top-bar .left-box {
     background-color: #ffffff;
-    padding: 10px;
     width: max-content !important;
     grid-gap: revert !important;
     grid-template-columns: revert !important;
     grid-template-rows: revert !important;
     display: flex !important;
+    padding: 0;
+    border: 2px solid gray;
+    background: var(--background-gradient);
 }
 
 .box-score-top-bar .divider {
@@ -114,16 +138,14 @@ body {
 
 .box-score-top-bar>div.left-box>div>div:nth-child(1)>span {
     width: 70px;
-    background-color: #d3d3d3;
-    padding: 5px;
+    background: var(--layout-gradient);
     justify-content: center;
     display: flex;
 }
 
 .box-score-top-bar>div.left-box>div>div:nth-child(3)>span {
     width: 70px;
-    background-color: var(--bg-gray);
-    padding: 5px;
+    background: var(--layout-gradient);
     justify-content: center;
     display: flex;
 }
@@ -140,10 +162,11 @@ body {
     height: 100%;
 }
 
+
 .box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator {
     margin-left: 10px;
     margin-right: 10px;
-    background-color: var(--bg-gray);
+    background: var(--layout-gradient);
     padding: 5px;
     height: 100%;
     display: flex;
@@ -152,6 +175,8 @@ body {
 
 .box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator>p {
     font-size: 54px;
+    min-width: 38px;
+    text-align: center;
 }
 
 .box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator .triangle {
@@ -174,7 +199,6 @@ body {
 .box-score-top-bar>div.left-box>div.indicators-container>div>div.pitch-indicator {
     zoom: 4;
     height: 100%;
-    margin-right: 3px;
 }
 
 .box-score-panel {
@@ -187,17 +211,21 @@ body {
 
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator {
     width: 120px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: var(--large-font-size)
 }
 
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(1),
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(2) {
-    padding: 10px;
-    background-color: var(--bg-gray);
+    padding: 8px;
+    background: var(--layout-gradient);
 }
 
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(2) {
-    margin-top: 10px;
+
 }
 
 

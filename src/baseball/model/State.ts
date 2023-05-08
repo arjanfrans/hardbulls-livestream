@@ -15,4 +15,8 @@ export interface State {
     filterColor: string
     hideBases: false
     hideCounts: false
+    homeGradient: [string, string]
+    awayGradient: [string, string]
+    layoutGradient: [string, string]
+    backgroundGradient: [string, string]
 }

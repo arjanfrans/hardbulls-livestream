@@ -12,9 +12,9 @@ export const CssGenerator = ({state}: Props) => {
     <div>
       <div>
         <div>Score Box</div>
-        <textarea readOnly={true} rows={10} cols={50} defaultValue={WBSC_OVERLAY_BOX(state.home, state.away, state.homeLogo || '', state.awayLogo || '', state.filterColor)}/>
+        <textarea readOnly={true} rows={10} cols={50} value={WBSC_OVERLAY_BOX(state.home, state.away, state.homeLogo || '', state.awayLogo || '', state.filterColor, state.awayGradient, state.homeGradient, state.layoutGradient, state.backgroundGradient)}/>
         <div>Player Box</div>
-        <textarea readOnly={true} rows={10} cols={50} defaultValue={WBSC_OVERLAY_PLAYER()}/>
+        <textarea readOnly={true} rows={10} cols={50} value={WBSC_OVERLAY_PLAYER()}/>
       </div>
     </div>
   )

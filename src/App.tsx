@@ -8,7 +8,7 @@ import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
 import { DisplayControl } from "./DisplayControl";
-import { CssGenerator } from "./CssGenerator";
+
 
 const savedState = localStorage.getItem("state");
 let initialState = savedState ? JSON.parse(savedState) : {
@@ -29,6 +29,10 @@ let initialState = savedState ? JSON.parse(savedState) : {
   observe: false,
   hideBases: false,
   hideCounts: false,
+  homeGradient: ['#ff0000', '#000000'],
+  awayGradient: ['#0000ff', '#000000'],
+  layoutGradient: ['#ffffff', '#000000'],
+  backgroundGradient: ['#ffffff', '#000000'],
 };
 
 
@@ -184,7 +188,6 @@ function App() {
         <DisplayControl state={state} handleChange={(key, value) => setState({...state, [key]: value})}/>
       </div>
 
-      <CssGenerator state={state}/>
     </div>
   );
 }
