@@ -1,14 +1,7 @@
-.base-container {
-    background-color: #333;
-    border-left: 2px solid #666;
-
-}
-
 .score-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #666;
 }
 
 .base-rotate-wrapper {
@@ -57,7 +50,6 @@
 .score-name {
     width: 100%;
     color: #fff;
-    background-color: #333;
     padding: 4px 6px;
     font-family: monospace;
 }
@@ -67,37 +59,32 @@
     color: #000;
     font-weight: bolder;
     min-width: 46px;
-    background-color: #ccc;
     padding: 4px 6px;
 }
 
 .inning-container {
     text-align: center;
     width: 38px;
-    color: #fff;
     padding-left: 6px;
     padding-right: 6px;
-    background-color: #333;
-    border-left: 2px solid #666;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 
 .counts-container {
-    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100px;
-    background-color: #666;
     text-align: center;
-    border-left: 2px solid #666;
+    margin-left: 6px;
 }
 
 .counts-top {
     border-bottom: 2px solid #666;
     padding-left: 6px;
     padding-right: 6px;
-    background-color: #333;
     height: 45px;
 }
 
@@ -105,7 +92,6 @@
     padding-left: 6px;
     padding-right: 6px;
     height: 45px;
-    background-color: #333;
 }
 
 .counts-bottom > span, .counts-top > span {
@@ -113,7 +99,6 @@
 }
 
 .logo {
-    background-color: #333;
     padding: 2px;
 }
 

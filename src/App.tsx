@@ -54,12 +54,13 @@ function App() {
   return (
     <div className="app-container">
       <div className="scoreboard">
-        <div className="scoreboard-top">
-          <Score homeLogo={state.homeLogo} awayLogo={state.awayLogo} homeName={state.home} awayName={state.away} awayScore={state.score[1]}
-                 homeScore={state.score[0]}></Score>
-          <Inning inning={state.inning} />
+        <div className="scoreboard-top" style={{
+          background: `linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%)`
+        }}>
+          <Score state={state} ></Score>
+          <Inning state={state} />
           {!state.hideBases && <Bases loaded={state.bases}></Bases>}
-          {!state.hideCounts && <Counts balls={state.balls} strikes={state.strikes} outs={state.outs} /> }
+          {!state.hideCounts && <Counts state={state} /> }
         </div>
       </div>
       <div className="settings-container">
