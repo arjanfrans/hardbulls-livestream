@@ -16,7 +16,7 @@ export const FilterColor = ({filterColor, handleFilterColorChange}: Props) => {
           <input
             type="color"
             value={filterColor}
-            onBlur={(event) => handleFilterColorChange(selectedColor)}
+            onBlur={() => handleFilterColorChange(selectedColor)}
             onChange={(event) => setSelectedColor(event.currentTarget.value) }
           />
         </div>

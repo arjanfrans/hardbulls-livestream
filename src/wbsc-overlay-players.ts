@@ -47,9 +47,9 @@ export const WBSC_OVERLAY_PLAYER = (
 
 
 body {
-    background-color: rgba(0, 255, 0, 1) !important;
-     font-family: Neue Aachen Regular, sans-serif;
-     color: var(--font-color-dark);
+    background-color: ${filterColor} !important;
+    font-family: Neue Aachen Regular, sans-serif;
+    color: var(--font-color-dark);
     
 }
 
@@ -116,7 +116,7 @@ body {
 
 #app>div {
     background-image: none !important;
-    background-color: rgba(0, 255, 0, 1) !important;
+    background-color: ${filterColor} !important;
 }
 
 .live-data {

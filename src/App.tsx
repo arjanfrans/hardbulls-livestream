@@ -11,7 +11,16 @@ import { DisplayControl } from "./DisplayControl";
 
 
 const savedState = localStorage.getItem("state");
-let initialState = savedState ? JSON.parse(savedState) : {
+
+let parsedSavedState = null;
+
+try {
+  parsedSavedState = savedState && JSON.parse(savedState);
+} catch (error) {
+}
+
+
+let initialState = parsedSavedState ? parsedSavedState : {
   bases: [],
   home: "",
   away: "",
