@@ -1,7 +1,29 @@
-export const WBSC_OVERLAY_PLAYER = () => `:root {
+export const WBSC_OVERLAY_PLAYER = (
+    home: string,
+    away: string,
+    homeLogo: string,
+    awayLogo: string,
+    filterColor: string,
+    awayGradient: [string, string],
+    homeGradient: [string, string],
+    layoutGradient: [string, string],
+    backgroundGradient: [string, string]
+) => `
+:root {
     --large-font-size: 38px;
     --primary: #e20514;
     --bg-gray: #d3d3d3;
+    --home-gradient: linear-gradient(0deg, #ff0000ff 0%, #bfbfbfff 100%);
+    --away-gradient: linear-gradient(0deg, #0000ffff 0%, #000000ff 100%);
+    --layout-gradient: linear-gradient(0deg, #c2c2c2ff 0%, #cfcfcfff 100%);
+    --background-gradient: linear-gradient(0deg, #404040ff 0%, #000000ff 100%);
+    --font-color-light: #f3f3f3;
+    --default-border: 2px solid gray;
+    --font-color-dark: #333;
+      --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
+    --away-gradient: linear-gradient(0deg, ${awayGradient[0]}ff 0%, ${awayGradient[1]}ff 100%);
+    --layout-gradient: linear-gradient(0deg, ${layoutGradient[0]}ff 0%, ${layoutGradient[1]}ff 100%);
+    --background-gradient: linear-gradient(0deg, ${backgroundGradient[0]}ff 0%, ${backgroundGradient[1]}ff 100%);
 }
 
 @font-face {
@@ -27,12 +49,70 @@ export const WBSC_OVERLAY_PLAYER = () => `:root {
 body {
     background-color: rgba(0, 255, 0, 1) !important;
      font-family: Neue Aachen Regular, sans-serif;
+     color: var(--font-color-dark);
     
 }
 
-strong {
-    font-family: Neue Aachen Bold, sans-serif;
+.single-player {
+    padding: 0 !important;
+    width: 100%;
 }
+
+.box-score-top-bar {
+    height: 0;
+}
+
+.box-score-top-bar > div.left-box {
+    display: none !important;
+}
+
+.box-score-top-bar > div.center-box {
+    display: none !important;
+}
+
+.box-score-top-bar > div.right-box {
+    display: none !important;
+}
+
+.game-info-plays {
+    display: none !important;
+}
+
+.up-next-container {
+    display: none !important;
+}
+
+.box-score-panel:nth-child(2) {
+    max-width: 330px !important;
+}
+
+.box-score-panel:nth-child(3) {
+    display: none !important;
+}
+
+.box-score-panel:nth-child(4) {
+    display: none !important;
+}
+
+.active-panel {
+    background-color: revert !important;
+    height: min-content !important;
+}
+
+.actual-panel {
+    height: min-content !important;
+}
+
+.game-info {
+    height: revert !important;
+    overflow: hidden !important;
+}
+
+.player-stats > p > strong {
+   font-family: Neue Aachen Bold, sans-serif; 
+   font-size: 24px;
+
+} 
 
 #app>div {
     background-image: none !important;
@@ -51,12 +131,41 @@ div.player-image.player-picture {
     display: none !important;
 }
 
+div.actual-players {
+    padding: 0 !important;
+    border: var(--default-border);
+    background: var(--background-gradient);
+}
+
 .actual-players p {
     margin: 0;
 
+
 }
 
-.actual-player .player-stats > a {
+div.single-player:nth-child(1) div.player-stats {
+    border-bottom: 0;
+    margin-bottom: 12px;
+}
+
+.player-stats {
+
+    width: 100%;
+    background: var(--background-gradient);
+    font-size: 24px;  
+}
+
+.player-stats > p:nth-child(2) {
+    background: var(--layout-gradient);
+    font-size: 18px;
+}
+
+.player-avg {
+    background: var(--layout-gradient);
+    color: var(--font-color-dark) !important;
+}
+
+.actual-players .player-stats > a {
     display: none !important;
 }
 div.actual-players div.player-stats > a {
@@ -64,9 +173,16 @@ div.actual-players div.player-stats > a {
 }
 
 div.actual-players div.player-stats > p.role-and-stats {
-    color: var(--primary) !important;
-    font-size: 15px !important;
+    color: var(--font-color-light) !important;
+    font-size: 18px !important;
     font-weight: bold !important;
+    text-shadow: 1px 1px black;
+}
+
+div.actual-players div.player-stats > p {
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 div.event-banner {
@@ -75,5 +191,13 @@ div.event-banner {
 
 #cookie-bar, #cookie-bar-prompt {
     display: none !important;
+}
+
+div.single-player:nth-child(1) div.player-stats > .role-and-stats {
+    background: var(--home-gradient);
+}
+
+div.single-player:nth-child(2) div.player-stats > .role-and-stats {
+    background: var(--away-gradient);
 }
 `

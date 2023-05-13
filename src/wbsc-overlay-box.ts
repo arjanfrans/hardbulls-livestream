@@ -9,6 +9,17 @@ export const WBSC_OVERLAY_BOX = (
     layoutGradient: [string, string],
     backgroundGradient: [string, string]
 ) => `
+
+:root {
+    --large-font-size: 38px;
+    --primary: #e20514;
+    --bg-gray: #d3d3d3;
+    --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
+    --away-gradient: linear-gradient(0deg, ${awayGradient[0]}ff 0%, ${awayGradient[1]}ff 100%);
+    --layout-gradient: linear-gradient(0deg, ${layoutGradient[0]}ff 0%, ${layoutGradient[1]}ff 100%);
+    --background-gradient: linear-gradient(0deg, ${backgroundGradient[0]}ff 0%, ${backgroundGradient[1]}ff 100%);
+}
+
 @font-face {
     font-display: swap;
     font-family: Brush Script Std;
@@ -44,16 +55,6 @@ export const WBSC_OVERLAY_BOX = (
     margin-left: 4px;
     color: #f3f3f3;
     filter: drop-shadow(2px 2px 2px black);
-}
-
-:root {
-    --large-font-size: 38px;
-    --primary: #e20514;
-    --bg-gray: #d3d3d3;
-    --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
-    --away-gradient: linear-gradient(0deg, ${awayGradient[0]}ff 0%, ${awayGradient[1]}ff 100%);
-    --layout-gradient: linear-gradient(0deg, ${layoutGradient[0]}ff 0%, ${layoutGradient[1]}ff 100%);
-    --background-gradient: linear-gradient(0deg, ${backgroundGradient[0]}ff 0%, ${backgroundGradient[1]}ff 100%);
 }
 
 body {
