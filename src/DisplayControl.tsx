@@ -11,6 +11,14 @@ interface Props {
 export const DisplayControl = ({handleChange, state}: Props) => {
   return (
     <div>
+      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+        <button onClick={() => handleChange('hideCounts', !state.hideCounts)}>
+          {state.hideCounts ? 'Show' : 'Hide'} counts
+        </button>
+        <button onClick={() => handleChange('hideBases', !state.hideBases)}>
+          {state.hideBases ? 'Show' : 'Hide'} bases
+        </button>
+      </div>
       <FilterColor filterColor={state.filterColor} handleFilterColorChange={(color) => handleChange('filterColor', color)} />
       <div>
         Home Gradient<GradientPicker startColor={state.homeGradient[0]} endColor={state.homeGradient[1]} onChange={(startColor, endColor) => handleChange('homeGradient', [startColor, endColor])}/>
@@ -24,14 +32,7 @@ export const DisplayControl = ({handleChange, state}: Props) => {
       <div>
         Background Gradient<GradientPicker startColor={state.backgroundGradient[0]} endColor={state.backgroundGradient[1]} onChange={(startColor, endColor) => handleChange('backgroundGradient', [startColor, endColor])}/>
       </div>
-      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-        <button onClick={() => handleChange('hideCounts', !state.hideCounts)}>
-          {state.hideCounts ? 'Show' : 'Hide'} counts
-        </button>
-        <button onClick={() => handleChange('hideBases', !state.hideBases)}>
-          {state.hideBases ? 'Show' : 'Hide'} bases
-        </button>
-      </div>
+
       <CssGenerator state={state}/>
     </div>
   )
