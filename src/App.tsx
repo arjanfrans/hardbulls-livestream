@@ -29,10 +29,10 @@ let initialState = savedState ? JSON.parse(savedState) : {
   observe: false,
   hideBases: false,
   hideCounts: false,
-  homeGradient: ['#dd0808ff', '#ff5c5cff'],
-  awayGradient: ['#0f6709ff', '#078834ff'],
-  layoutGradient: ['#8f8f8fff', '#b0b0b0ff'],
-  backgroundGradient: ['#000000ff', '#474747ff'],
+  homeGradient: ['#dd0808', '#ff5c5c'],
+  awayGradient: ['#0f6709', '#078834'],
+  layoutGradient: ['#8f8f8f', '#b0b0b0'],
+  backgroundGradient: ['#000000', '#474747'],
 };
 
 
