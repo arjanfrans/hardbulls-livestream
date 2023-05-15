@@ -33,6 +33,24 @@ export const DisplayControl = ({handleChange, state}: Props) => {
         Background Gradient<GradientPicker startColor={state.backgroundGradient[0]} endColor={state.backgroundGradient[1]} onChange={(startColor, endColor) => handleChange('backgroundGradient', [startColor, endColor])}/>
       </div>
 
+      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+            <div>
+              Home Team ID
+            </div>
+            <input
+                type="text"
+                value={state.homeTeamId}
+                onChange={(event) => handleChange('homeTeamId', event.currentTarget.value)}
+            />
+                        <div>
+              Away Team ID
+            </div>
+            <input
+                type="text"
+                value={state.awayTeamId}
+                onChange={(event) => handleChange('awayTeamId', event.currentTarget.value)}
+            />
+        </div>
       <CssGenerator state={state}/>
     </div>
   )

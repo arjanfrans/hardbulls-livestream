@@ -5,6 +5,8 @@ export interface State {
     bases: BaseEnum[]
     home: string
     away: string
+    homeTeamId: string
+    awayTeamId: string
     score: [number, number]
     inning: InningValue
     outs: number

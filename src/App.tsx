@@ -36,6 +36,8 @@ let initialState = parsedSavedState ? parsedSavedState : {
   awayLogo: undefined,
   filterColor: "#00ff00",
   observe: false,
+  awayTeamId: '',
+  homeTeamId: '',
   hideBases: false,
   hideCounts: false,
   homeGradient: ['#dd0808', '#ff5c5c'],
@@ -69,133 +71,135 @@ function App() {
           <Score state={state} ></Score>
           <Inning state={state} />
           {!state.hideBases && <Bases loaded={state.bases}></Bases>}
-          {!state.hideCounts && <Counts state={state} /> }
+          {!state.hideCounts && <Counts state={state} />}
         </div>
       </div>
-      <div className="settings-container">
-        <Control
-          state={state}
-          handleBallClick={() => {
-            if (state.balls === 3) {
+      <div style={{display: 'flex', justifyContent: 'space-between'}} className="settings-container">
+        <div >
+          <Control
+            state={state}
+            handleBallClick={() => {
+              if (state.balls === 3) {
+                setState({
+                  ...state,
+                  balls: 0
+                })
+
+                return;
+              }
+
               setState({
                 ...state,
+                balls: state.balls + 1
+              })
+            }
+            }
+            handleOutClick={() => {
+              if (state.outs === 2) {
+                setState({
+                  ...state,
+                  outs: 0
+                });
+
+                return;
+              }
+
+              setState({
+                ...state,
+                outs: state.outs + 1
+              })
+            }
+            }
+            handleStrikeClick={() => {
+              if (state.strikes === 2) {
+                setState({
+                  ...state,
+                  strikes: 0
+                })
+
+                return;
+              }
+
+              setState({
+                ...state,
+                strikes: state.strikes + 1
+              })
+            }
+            }
+            handleTeamNameChange={(type, name) => {
+              if (type === "home") {
+                setState({
+                  ...state,
+                  home: name
+                })
+
+                return;
+              }
+
+              setState({
+                ...state,
+                away: name
+              })
+            }
+            }
+            handleClearBases={() => {
+              setState({
+                ...state,
+                bases: []
+              })
+            }
+            }
+            handleResetCountClick={() => {
+              setState({
+                ...state,
+                strikes: 0,
                 balls: 0
               })
-
-              return;
             }
-
-            setState({
-              ...state,
-              balls: state.balls + 1
-            })
-          }
-          }
-          handleOutClick={() => {
-            if (state.outs === 2) {
+            }
+            handleInningChange={(half, value) => {
               setState({
                 ...state,
-                outs: 0
+                inning: { half, value }
+              })
+            }}
+            handleScoreChange={(team, value) => {
+              if (team === "home") {
+                setState({
+                  ...state,
+                  score: [value, state.score[1]]
+                })
+
+                return;
+              }
+
+              setState({
+                ...state,
+                score: [state.score[0], value]
+              })
+            }}
+            handleBaseChange={(base, value) => {
+              if (value) {
+                setState({
+                  ...state,
+                  bases: [...state.bases, base]
+                })
+
+                return;
+              }
+
+              setState({
+                ...state,
+                bases: state.bases.filter((v) => v !== base)
               });
+            }}
+          />
+          <LogoUpload type={"home"} value={state.homeLogo} handleFileUpload={file => setState({ ...state, homeLogo: file })} />
+          <LogoUpload type={"away"} value={state.awayLogo} handleFileUpload={(file) => setState({ ...state, awayLogo: file })} />
+          <hr />
 
-              return;
-            }
-
-            setState({
-              ...state,
-              outs: state.outs + 1
-            })
-          }
-          }
-          handleStrikeClick={() => {
-            if (state.strikes === 2) {
-              setState({
-                ...state,
-                strikes: 0
-              })
-
-              return;
-            }
-
-            setState({
-              ...state,
-              strikes: state.strikes + 1
-            })
-          }
-          }
-          handleTeamNameChange={(type, name) => {
-            if (type === "home") {
-              setState({
-                ...state,
-                home: name
-              })
-
-              return;
-            }
-
-            setState({
-              ...state,
-              away: name
-            })
-          }
-          }
-          handleClearBases={() => {
-            setState({
-              ...state,
-              bases: []
-            })
-          }
-          }
-          handleResetCountClick={() => {
-            setState({
-              ...state,
-              strikes: 0,
-              balls: 0
-            })
-          }
-          }
-          handleInningChange={(half, value) => {
-            setState({
-              ...state,
-              inning: { half, value }
-            })
-          }}
-          handleScoreChange={(team, value) => {
-            if (team === "home") {
-              setState({
-                ...state,
-                score: [value, state.score[1]]
-              })
-
-              return;
-            }
-
-            setState({
-              ...state,
-              score: [state.score[0], value]
-            })
-          }}
-          handleBaseChange={(base, value) => {
-            if (value) {
-              setState({
-                ...state,
-                bases: [...state.bases, base]
-              })
-
-              return;
-            }
-
-            setState({
-              ...state,
-              bases: state.bases.filter((v) => v !== base)
-            });
-          }}
-        />
-        <LogoUpload type={"home"} value={state.homeLogo} handleFileUpload={file => setState({...state, homeLogo: file })} />
-        <LogoUpload type={"away"} value={state.awayLogo} handleFileUpload={(file) => setState({...state, awayLogo: file})} />
-        <hr/>
-
-        <DisplayControl state={state} handleChange={(key, value) => setState({...state, [key]: value})}/>
+          <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
+        </div>
       </div>
 
     </div>

@@ -1,4 +1,6 @@
 export const WBSC_OVERLAY_PLAYER = (
+    homeTeamId: string,
+    awayTeamId: string,
     home: string,
     away: string,
     homeLogo: string,
@@ -20,7 +22,7 @@ export const WBSC_OVERLAY_PLAYER = (
     --font-color-light: #f3f3f3;
     --default-border: 2px solid gray;
     --font-color-dark: #333;
-      --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
+    --home-gradient: linear-gradient(0deg, ${homeGradient[0]}ff 0%, ${homeGradient[1]}ff 100%);
     --away-gradient: linear-gradient(0deg, ${awayGradient[0]}ff 0%, ${awayGradient[1]}ff 100%);
     --layout-gradient: linear-gradient(0deg, ${layoutGradient[0]}ff 0%, ${layoutGradient[1]}ff 100%);
     --background-gradient: linear-gradient(0deg, ${backgroundGradient[0]}ff 0%, ${backgroundGradient[1]}ff 100%);
@@ -108,11 +110,7 @@ body {
     overflow: hidden !important;
 }
 
-.player-stats > p > strong {
-   font-family: Neue Aachen Bold, sans-serif; 
-   font-size: 24px;
 
-} 
 
 #app>div {
     background-image: none !important;
@@ -120,7 +118,7 @@ body {
 }
 
 .live-data {
-    background-color: #ffffff;
+    background-color: ${filterColor} !important;
 }
 
 .innings-table {
@@ -131,7 +129,21 @@ div.player-image.player-picture {
     display: none !important;
 }
 
+
+.player-stats p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+ .player-stats > p > strong {
+    font-family: Neue Aachen Bold, sans-serif; 
+    font-size: 20px;
+    max-width: 280px;
+ } 
+
 div.actual-players {
+    margin-top: 20px !important;
     padding: 0 !important;
     border: var(--default-border);
     background: var(--background-gradient);
@@ -168,6 +180,7 @@ div.single-player:nth-child(1) div.player-stats {
 .actual-players .player-stats > a {
     display: none !important;
 }
+
 div.actual-players div.player-stats > a {
     display: none !important;
 }
@@ -177,6 +190,31 @@ div.actual-players div.player-stats > p.role-and-stats {
     font-size: 18px !important;
     font-weight: bold !important;
     text-shadow: 1px 1px black;
+    position: relative;
+}
+
+div.player-stats:has(> a[href*="/teams/${homeTeamId}"]) > .role-and-stats::after {
+    content: "";
+    background-image: url("${homeLogo}");
+    background-size: contain;  
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-top: -12px;
+    padding: 20px;
+    right: 8px;
+    filter: drop-shadow(2px 2px 2px black);
+}
+
+div.player-stats:has(> a[href*="/teams/${awayTeamId}"]) > .role-and-stats::after {
+    content: "";
+    background-image: url("${awayLogo}");
+    background-size: contain;  
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-top: -12px;
+    padding: 20px;
+    right: 8px;
+    filter: drop-shadow(2px 2px 2px black);
 }
 
 div.actual-players div.player-stats > p {
@@ -193,11 +231,11 @@ div.event-banner {
     display: none !important;
 }
 
-div.single-player:nth-child(1) div.player-stats > .role-and-stats {
+div.player-stats:has(> a[href*="/teams/${homeTeamId}"]) > .role-and-stats {
     background: var(--home-gradient);
 }
 
-div.single-player:nth-child(2) div.player-stats > .role-and-stats {
+div.player-stats:has(> a[href*="/teams/${awayTeamId}"]) > .role-and-stats {
     background: var(--away-gradient);
 }
 `
