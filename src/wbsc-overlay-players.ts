@@ -157,7 +157,7 @@ div.actual-players {
 
 div.single-player:nth-child(1) div.player-stats {
     border-bottom: 0;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .player-stats {
@@ -199,7 +199,7 @@ div.player-stats:has(> a[href*="/teams/${homeTeamId}"]) > .role-and-stats::after
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -12px;
+    margin-top: -16px;
     padding: 20px;
     right: 8px;
     filter: drop-shadow(2px 2px 2px black);
@@ -211,7 +211,7 @@ div.player-stats:has(> a[href*="/teams/${awayTeamId}"]) > .role-and-stats::after
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -12px;
+    margin-top: -16px;
     padding: 20px;
     right: 8px;
     filter: drop-shadow(2px 2px 2px black);

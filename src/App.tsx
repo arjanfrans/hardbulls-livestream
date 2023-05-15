@@ -200,6 +200,9 @@ function App() {
 
           <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
         </div>
+        <div>
+          Launch OBS with --enable-experimental-web-platform-features
+        </div>
       </div>
 
     </div>

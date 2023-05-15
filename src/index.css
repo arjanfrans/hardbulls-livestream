@@ -43,6 +43,7 @@ body {
     background-color: white;
     width: 800px;
     bottom: 0;
+    column-gap: 10px;
 }
 
 input.large-checkbox {
