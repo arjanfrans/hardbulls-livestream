@@ -37,7 +37,7 @@ let initialState = parsedSavedState ? parsedSavedState : {
   filterColor: "#00ff00",
   observe: false,
   awayTeamId: '',
-  homeTeamId: '',
+  homeTeamId: '24492',
   hideBases: false,
   hideCounts: false,
   homeGradient: ['#dd0808', '#ff5c5c'],

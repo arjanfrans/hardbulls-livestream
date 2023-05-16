@@ -7,6 +7,8 @@ interface Props {
   handleFileUpload: (file: string | undefined) => void
 }
 
+const LOGO_CACHE: {[key: string]: Blob} = {};
+
 export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
   const convertAndResizeImage = async (file: File|Blob) => {
     return await resizeImage(100, await convertFileToBase64(file));
@@ -26,9 +28,15 @@ export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
   ]
 
   const handleSelect = async (value: string ) => {
-    const response = await fetch(`${window.location.origin}/teams/${value}`)
+    let content = LOGO_CACHE[value];
 
-    const content = await response.blob()
+    if (!content) {
+      const response = await fetch(`${window.location.origin}/teams/${value}`)
+
+      content = await response.blob()
+
+      LOGO_CACHE[value] = content;
+    }
 
     handleFileUpload(await convertAndResizeImage(content));
   }

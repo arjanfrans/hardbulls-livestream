@@ -1,5 +1,4 @@
 import React from "react";
-import { FilterColor } from "./FilterColor";
 import { State } from "./baseball/model/State";
 import { GradientPicker } from "./GradientPicker";
 import { CssGenerator } from "./CssGenerator";
@@ -20,7 +19,6 @@ export const DisplayControl = ({handleChange, state}: Props) => {
           {state.hideBases ? 'Show' : 'Hide'} bases
         </button>
       </div>
-      <FilterColor filterColor={state.filterColor} handleFilterColorChange={(color) => handleChange('filterColor', color)} />
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>Filter color (greenscreen: 0, 255, 0)</div>
         <ColorPicker color={state.filterColor} onChange={(color) => handleChange('filterColor', color)}/>
