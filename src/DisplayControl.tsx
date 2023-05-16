@@ -1,7 +1,7 @@
 import React from "react";
 import { State } from "./baseball/model/State";
 import { GradientPicker } from "./GradientPicker";
-import { CssGenerator } from "./CssGenerator";
+
 import { ColorPicker } from "./ColorPicker";
 interface Props {
   state: State,
@@ -60,7 +60,7 @@ export const DisplayControl = ({handleChange, state}: Props) => {
                 onChange={(event) => handleChange('awayTeamId', event.currentTarget.value)}
             />
         </div>
-      <CssGenerator state={state}/>
+      
     </div>
   )
 }

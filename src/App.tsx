@@ -8,7 +8,8 @@ import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
 import { DisplayControl } from "./DisplayControl";
-
+import OBSWebSocket from 'obs-websocket-js';
+import { CssGenerator } from "./CssGenerator";
 
 const savedState = localStorage.getItem("state");
 
@@ -48,8 +49,11 @@ let initialState = parsedSavedState ? parsedSavedState : {
   fontColorDark: '#333333',
 };
 
+interface Props {
+  obs?: OBSWebSocket
+}
 
-function App() {
+function App({obs}: Props) {
   const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
@@ -201,9 +205,13 @@ function App() {
           <hr />
 
           <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
+          <hr/>
+          <CssGenerator state={state} obs={obs}/>
         </div>
         <div>
-          Launch OBS with --enable-experimental-web-platform-features
+          Launch OBS with --enable-experimental-web-platform-features<br/>
+          Run OBS Websocker on port 4455<br/>
+          Add two browser sources: `hb_score` and `hb_players`
         </div>
       </div>
 
