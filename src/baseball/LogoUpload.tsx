@@ -8,8 +8,29 @@ interface Props {
 }
 
 export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
-  const convertAndResizeImage = async (file: File) => {
+  const convertAndResizeImage = async (file: File|Blob) => {
     return await resizeImage(100, await convertFileToBase64(file));
+  }
+
+  const logos = [
+   'logo_bb.png',
+   'logo_dd.png',
+   'logo_di.png',
+   'logo_fc.png',
+   'logo_gh.png',
+   'logo_hb.png',
+   'logo_kv.png',
+   'logo_st.png',
+   'logo_vm.png',
+   'logo_vw.png',
+  ]
+
+  const handleSelect = async (value: string ) => {
+    const response = await fetch(`${window.location.origin}/teams/${value}`)
+
+    const content = await response.blob()
+
+    handleFileUpload(await convertAndResizeImage(content));
   }
 
   return (
@@ -29,6 +50,14 @@ export const LogoUpload = ({type, value, handleFileUpload}: Props) => {
             }
           }}
         />
+      </div>
+      <div>
+        <select onChange={(event) => handleSelect(event.target.value)}>
+          <option></option>
+          {logos.map(logo => (
+            <option key={logo} value={logo}>{logo}</option>
+          ))}
+        </select>
       </div>
     </div>
   );

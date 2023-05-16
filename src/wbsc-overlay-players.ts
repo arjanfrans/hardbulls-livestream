@@ -6,7 +6,7 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
     --primary: #e20514;
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
-    --default-drop-shadow: drop-shadow(2px 2px 2px black);
+    --default-drop-shadow: drop-shadow(1px 1px 0px black);
     --font-color-light: ${state.fontColorLight};
     --font-color-dark: ${state.fontColorDark};
     --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);
@@ -173,7 +173,7 @@ div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats:
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -16px;
+    margin-top: -12px;
     padding: 20px;
     right: 8px;
     filter: var(--default-drop-shadow);
@@ -185,7 +185,7 @@ div.player-stats:has(> a[href*="/teams/${state.awayTeamId}"]) > .role-and-stats:
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -16px;
+    margin-top: -12px;
     padding: 20px;
     right: 8px;
     filter: var(--default-drop-shadow);

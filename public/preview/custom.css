@@ -4,9 +4,9 @@
     --primary: #e20514;
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
-    --default-drop-shadow: drop-shadow(2px 2px 2px black);
-    --font-color-light: #c47e7e;
-    --font-color-dark: #1a7f99;
+    --default-drop-shadow: drop-shadow(1px 1px 0px black);
+    --font-color-light: #f3f3f3;
+    --font-color-dark: #333333;
     --home-gradient: linear-gradient(0deg, #dd0808ff 0%, #ff5c5cff 100%);
     --away-gradient: linear-gradient(0deg, #0f6709ff 0%, #078834ff 100%);
     --layout-gradient: linear-gradient(0deg, #8f8f8fff 0%, #b0b0b0ff 100%);
@@ -165,13 +165,13 @@ div.actual-players div.player-stats > p.role-and-stats {
     position: relative;
 }
 
-div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats::after {
+div.player-stats:has(> a[href*="/teams/24473"]) > .role-and-stats::after {
     content: "";
-    background-image: url("undefined");
+    background-image: url("data:image/png;base64,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");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -16px;
+    margin-top: -12px;
     padding: 20px;
     right: 8px;
     filter: var(--default-drop-shadow);
@@ -179,11 +179,11 @@ div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats::after {
 
 div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats::after {
     content: "";
-    background-image: url("undefined");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABLCAYAAACGGCK3AAAAAXNSR0IArs4c6QAABcFJREFUeF7tnVtsFFUYx//fzLZgBEJpeSg72wU63ZbiQyOKAbwQEy8k3pDUGIMvGIOBB/VBQzRaSURifDJeYoyiIUKiifGWEMEXjVFM0PBAY6jUC3Qh4u5sQVBsd2c+swSkLLvtmTmHZSzfPrbf/3+++f/2zM6e3T1DkEesEqBYdSPNQIDE7EmgBORoym1PMAZj1vuW5uzgQ5U9eY7LMesTDGxoyQ6+qNKXAFFJSbNGgGgGaFouQEwnqulnHMixtramYtD4aGVfFmEGQI+DDZ+2bXs/E33EpdJotSwsgC3C3qahwU8r/59z3OfG/s0C3Q1wj2amKvKhANhSrdC2+ItZh37+RsVE6TWklhEvWtRw7NipR4Ji8XkEPENlQIWavzFlates1asO08aNgUL9uCV5J5MkK5hJjOXMeFXXr5betu35Mw8O/KrrrwXk7OCe45bpL9VtpqznRGJXy2/7bzPhVenBfX2Wt2XbHmJcbdKfYTkt2Z8Om/A0AyTlrgHjbRMNNWcHjfQ0Xi8Fx93GwAMm+iWg6JM9d/bQwBFDfiZsAFPX//UAkmvpnG5P9bcycI/u0RPhhaYhp4/wZUnXq6w39mz8PwH571SbzvTDDxbqBUmPNWcPvKzncU59WQMp9D7Yxrt3H9QLU4Do5VehLiQ71jLxG9FNBUj07KooC077CgbtiG4qQKJnV0V53MksLoE/Brg1mrEAiZZbDRV3dzd6f46+Q5EvgwWIUSBlM89x3wJwwVK+2kACRC2nEFUCZJyw6vHGsHJ4ARIjIH8tu2XOyJHsdi4WbwoxqcaUyikrWm41VHLZO0Gc9T5lCZCYAdFfg5NTlrFTVj7pPkWETXqGAkQvvzPqfDqzifxgAwBLz1CA6OVXfiOY7lzDzK9TEEzRNoMA0cown2p/2gI9wwwDMMqtCJBIQLx011IO/Fcs5h7WPk2NbUGATAjkuLNwVskaObd6G2AvgIYJhZEKJjmQANgYKZczIuv0x9J0DcArTH5EXbunSQ5EB8al0QqQS5N7zVEFiABRSUB/CUJllDjWyAyJGZVJDkT3KquSlp1IdHCpdL/+Ekmt58EkB2J6+T3XuWy6depoqnwJzIzNxLjT7BQTINp5eqmOHwEkwSZ+QiFAtIH09/Y2tu7pX4lScSuARj1DAaKX3xh1vrVjAdlcni0aDwGiEd6F0j9SmRsSHHzCQFM0YwESLbdxVMMp9y5mfMCIsiQvQIwDKRt66c4j8P0I3+8VIBcFyGkoqUwRHCTCDSBAwuUVorowf+FrPDqyLoREPjEMF1a4ai/l3grGznAqmSHh8gpRnUunW8lv2E7AcnWZAFHPKkKl57hvAnhYXSpA1LOKUClAKkIzvbgYlokAESDnJXBZ/0692uyRGSIzRGZIrdcVXt47rXBw37sollapv/bIVZZ6ViErh1MdNwbADjBfqS4VIOpZhazMp7vuJb/0YTiZAAmXV4hqb96Cb1EsLgkhkbWscGGpVxduX3k99+/7Wl1xtlJmSPjMJlDkUp1zLPYHAEwLby5Awmc2jmJ47tyZvp/YGv3rQQLEKJBCz3Xrg7z3EgFXRDOOIZD8kpuTNHQoG+2AzlfVay0rl17Qatn2Woz+06fTNxM2Nw85z8Zqz8VCV89nfPLkHToHdlZbDyC55PyMZdnvgflaAz37AdltsdqV1OS+vQDtac4eWGwgqKoW+aT7AxFaALSZGiM2+/YOt85Ls22tY9CTpg6OgFFuaFgfnAjen50fOKHjy93d0wonR8vB08Xe2RoWrmrwE7/POLzf0+lZabW31t7vBKwmoF2ngVpaArb7wIFq/1fd+52IOizQfRz6mySRj2hnAHxXqTa+97vc0CUyoNNC43dHECACRCWBy/eWR+Uf4vsYeUIlpXrUlO9hQQi+b87+csHKbMFxN9ejhzBj+MDns7ODX6lolF7UVYykxkwCAsRMjsZcBIixKM0Y/QuraCt5MozqawAAAABJRU5ErkJggg==");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    margin-top: -16px;
+    margin-top: -12px;
     padding: 20px;
     right: 8px;
     filter: var(--default-drop-shadow);
@@ -203,7 +203,7 @@ div.event-banner {
     display: none !important;
 }
 
-div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats {
+div.player-stats:has(> a[href*="/teams/24473"]) > .role-and-stats {
     background: var(--home-gradient);
 }
 

@@ -7,7 +7,7 @@ export const WBSC_OVERLAY_BOX = (state: State) => `
     --primary: #e20514;
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
-    --default-drop-shadow: drop-shadow(2px 2px 2px black);
+    --default-drop-shadow: drop-shadow(2px 2px 0px black);
     --font-color-light: ${state.fontColorLight};
     --font-color-dark: ${state.fontColorDark};
     --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);
