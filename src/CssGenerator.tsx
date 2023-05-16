@@ -8,8 +8,8 @@ interface Props {
 }
 
 export const CssGenerator = ({ state }: Props) => {
-  const scoreBoxCss = WBSC_OVERLAY_BOX(state.home, state.away, state.homeLogo || "", state.awayLogo || "", state.filterColor, state.awayGradient, state.homeGradient, state.layoutGradient, state.backgroundGradient);
-  const playerBoxCss = WBSC_OVERLAY_PLAYER(state.homeTeamId, state.awayTeamId, state.home, state.away, state.homeLogo || "", state.awayLogo || "", state.filterColor, state.awayGradient, state.homeGradient, state.layoutGradient, state.backgroundGradient);
+  const scoreBoxCss = WBSC_OVERLAY_BOX(state);
+  const playerBoxCss = WBSC_OVERLAY_PLAYER(state);
 
   return (
     <div>

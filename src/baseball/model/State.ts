@@ -21,4 +21,6 @@ export interface State {
     awayGradient: [string, string]
     layoutGradient: [string, string]
     backgroundGradient: [string, string]
+    fontColorLight: string
+    fontColorDark: string
 }

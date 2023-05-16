@@ -1,18 +1,16 @@
-import { State } from "./baseball/model/State"
 
-export const WBSC_OVERLAY_PLAYER = (state: State) => `
 :root {
     --large-font-size: 38px;
     --primary: #e20514;
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
     --default-drop-shadow: drop-shadow(2px 2px 2px black);
-    --font-color-light: ${state.fontColorLight};
-    --font-color-dark: ${state.fontColorDark};
-    --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);
-    --away-gradient: linear-gradient(0deg, ${state.awayGradient[0]}ff 0%, ${state.awayGradient[1]}ff 100%);
-    --layout-gradient: linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%);
-    --background-gradient: linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%);
+    --font-color-light: #c47e7e;
+    --font-color-dark: #1a7f99;
+    --home-gradient: linear-gradient(0deg, #dd0808ff 0%, #ff5c5cff 100%);
+    --away-gradient: linear-gradient(0deg, #0f6709ff 0%, #078834ff 100%);
+    --layout-gradient: linear-gradient(0deg, #8f8f8fff 0%, #b0b0b0ff 100%);
+    --background-gradient: linear-gradient(0deg, #000000ff 0%, #474747ff 100%);
 }
 
 @font-face {
@@ -26,7 +24,7 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
 }
 
 body {
-    background-color: ${state.filterColor} !important;
+    background-color: #00ff00 !important;
     font-family: Neue Aachen Regular, sans-serif;
     color: var(--font-color-dark);
 }
@@ -90,11 +88,11 @@ body {
 
 #app>div {
     background-image: none !important;
-    background-color: ${state.filterColor} !important;
+    background-color: #00ff00 !important;
 }
 
 .live-data {
-    background-color: ${state.filterColor} !important;
+    background-color: #00ff00 !important;
 }
 
 .innings-table {
@@ -110,13 +108,13 @@ div.player-image.player-picture {
     display: flex;
     justify-content: space-between;
     align-items: center;
- }
+}
 
- .player-stats > p > strong {
-    font-family: Neue Aachen Bold, sans-serif; 
+.player-stats > p > strong {
+    font-family: Neue Aachen Bold, sans-serif;
     font-size: 20px;
     max-width: 280px;
- } 
+}
 
 div.actual-players {
     margin-top: 20px !important;
@@ -138,7 +136,7 @@ div.single-player:nth-child(1) div.player-stats {
 
     width: 100%;
     background: var(--background-gradient);
-    font-size: 24px;  
+    font-size: 24px;
 }
 
 .player-stats > p:nth-child(2) {
@@ -167,10 +165,10 @@ div.actual-players div.player-stats > p.role-and-stats {
     position: relative;
 }
 
-div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats::after {
+div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats::after {
     content: "";
-    background-image: url("${state.homeLogo}");
-    background-size: contain;  
+    background-image: url("undefined");
+    background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
     margin-top: -16px;
@@ -179,10 +177,10 @@ div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats:
     filter: var(--default-drop-shadow);
 }
 
-div.player-stats:has(> a[href*="/teams/${state.awayTeamId}"]) > .role-and-stats::after {
+div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats::after {
     content: "";
-    background-image: url("${state.awayLogo}");
-    background-size: contain;  
+    background-image: url("undefined");
+    background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
     margin-top: -16px;
@@ -205,11 +203,10 @@ div.event-banner {
     display: none !important;
 }
 
-div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats {
+div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats {
     background: var(--home-gradient);
 }
 
-div.player-stats:has(> a[href*="/teams/${state.awayTeamId}"]) > .role-and-stats {
+div.player-stats:has(> a[href*="/teams/"]) > .role-and-stats {
     background: var(--away-gradient);
 }
-`

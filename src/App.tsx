@@ -44,6 +44,8 @@ let initialState = parsedSavedState ? parsedSavedState : {
   awayGradient: ['#0f6709', '#078834'],
   layoutGradient: ['#8f8f8f', '#b0b0b0'],
   backgroundGradient: ['#000000', '#474747'],
+  fontColorLight: '#f3f3f3',
+  fontColorDark: '#333333',
 };
 
 

@@ -6,6 +6,7 @@ interface Props {
 export const Counts = ({state}: Props) => {
   const {strikes, balls, outs} = state;
   const style = {
+    color: state.fontColorDark,
     background: `linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%)`
   }
     return (

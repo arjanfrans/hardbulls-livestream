@@ -3,7 +3,7 @@ import { useState } from "react"
 interface Props {
     startColor: string
     endColor: string
-  onChange: (startColor: string, endColor: string) => void
+    onChange: (startColor: string, endColor: string) => void
 }
 
 export const GradientPicker = ({startColor, endColor, onChange}: Props) => {

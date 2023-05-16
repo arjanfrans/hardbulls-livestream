@@ -24,6 +24,7 @@ export const Inning = ({state}: Props) => {
 
     return (
         <div className="inning-container" style={{
+          color: state.fontColorDark,
           background: `linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%)`
         }}>
             <div style={{marginBottom: '-10px'}}>

@@ -3,6 +3,7 @@ import { FilterColor } from "./FilterColor";
 import { State } from "./baseball/model/State";
 import { GradientPicker } from "./GradientPicker";
 import { CssGenerator } from "./CssGenerator";
+import { ColorPicker } from "./ColorPicker";
 interface Props {
   state: State,
   handleChange: (key: keyof State, value: string|boolean|string[]) => void;
@@ -20,6 +21,16 @@ export const DisplayControl = ({handleChange, state}: Props) => {
         </button>
       </div>
       <FilterColor filterColor={state.filterColor} handleFilterColorChange={(color) => handleChange('filterColor', color)} />
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Filter color (greenscreen: 0, 255, 0)</div>
+        <ColorPicker color={state.filterColor} onChange={(color) => handleChange('filterColor', color)}/>
+      </div>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div>Font Color Light</div>
+        <ColorPicker color={state.fontColorLight} onChange={(color) => handleChange('fontColorLight', color)}/>
+        <div>Font Color Dark</div>
+        <ColorPicker color={state.fontColorDark} onChange={(color) => handleChange('fontColorDark', color)}/>
+      </div>
       <div>
         Home Gradient<GradientPicker startColor={state.homeGradient[0]} endColor={state.homeGradient[1]} onChange={(startColor, endColor) => handleChange('homeGradient', [startColor, endColor])}/>
       </div>
