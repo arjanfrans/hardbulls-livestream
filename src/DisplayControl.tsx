@@ -5,13 +5,13 @@ import { GradientPicker } from "./GradientPicker";
 import { ColorPicker } from "./ColorPicker";
 interface Props {
   state: State,
-  handleChange: (key: keyof State, value: string|boolean|string[]) => void;
+  handleChange: <T extends keyof State>(key: T, value: State[T]) => void;
 }
 
 export const DisplayControl = ({handleChange, state}: Props) => {
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <button onClick={() => handleChange('hideCounts', !state.hideCounts)}>
           {state.hideCounts ? 'Show' : 'Hide'} counts
         </button>
@@ -41,26 +41,6 @@ export const DisplayControl = ({handleChange, state}: Props) => {
       <div>
         Background Gradient<GradientPicker startColor={state.backgroundGradient[0]} endColor={state.backgroundGradient[1]} onChange={(startColor, endColor) => handleChange('backgroundGradient', [startColor, endColor])}/>
       </div>
-
-      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-            <div>
-              Home Team ID
-            </div>
-            <input
-                type="text"
-                value={state.homeTeamId}
-                onChange={(event) => handleChange('homeTeamId', event.currentTarget.value)}
-            />
-                        <div>
-              Away Team ID
-            </div>
-            <input
-                type="text"
-                value={state.awayTeamId}
-                onChange={(event) => handleChange('awayTeamId', event.currentTarget.value)}
-            />
-        </div>
-      
     </div>
   )
 }

@@ -8,8 +8,11 @@ import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
 import { DisplayControl } from "./DisplayControl";
-import OBSWebSocket from 'obs-websocket-js';
 import { CssGenerator } from "./CssGenerator";
+import { TickerControl } from "./TickerControl";
+import { setObs } from "./obs";
+
+const DEFAULT_OBS_SOCKET = "ws://127.0.0.1:4455";
 
 const savedState = localStorage.getItem("state");
 
@@ -37,23 +40,22 @@ let initialState = parsedSavedState ? parsedSavedState : {
   awayLogo: undefined,
   filterColor: "#00ff00",
   observe: false,
-  awayTeamId: '',
-  homeTeamId: '24492',
+  awayTeamId: "",
+  homeTeamId: "24492",
   hideBases: false,
   hideCounts: false,
-  homeGradient: ['#dd0808', '#ff5c5c'],
-  awayGradient: ['#0f6709', '#078834'],
-  layoutGradient: ['#8f8f8f', '#b0b0b0'],
-  backgroundGradient: ['#000000', '#474747'],
-  fontColorLight: '#f3f3f3',
-  fontColorDark: '#333333',
+  homeGradient: ["#dd0808", "#ff5c5c"],
+  awayGradient: ["#0f6709", "#078834"],
+  layoutGradient: ["#8f8f8f", "#b0b0b0"],
+  backgroundGradient: ["#000000", "#474747"],
+  fontColorLight: "#f3f3f3",
+  fontColorDark: "#333333",
+  obsSocket: DEFAULT_OBS_SOCKET
 };
 
-interface Props {
-  obs?: OBSWebSocket
-}
+setObs(initialState.obsSocket).catch((err) => console.error(err));
 
-function App({obs}: Props) {
+function App() {
   const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
@@ -61,12 +63,12 @@ function App({obs}: Props) {
   }, [state]);
 
   useEffect(() => {
-    const containerElement = document.querySelector('.app-container') as HTMLElement
+    const containerElement = document.querySelector(".app-container") as HTMLElement;
 
     if (containerElement) {
       containerElement.style.backgroundColor = state.filterColor;
     }
-  }, [state])
+  }, [state]);
 
   return (
     <div className="app-container">
@@ -74,14 +76,15 @@ function App({obs}: Props) {
         <div className="scoreboard-top" style={{
           background: `linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%)`
         }}>
-          <Score state={state} ></Score>
+          <Score state={state}></Score>
           <Inning state={state} />
           {!state.hideBases && <Bases loaded={state.bases}></Bases>}
           {!state.hideCounts && <Counts state={state} />}
         </div>
       </div>
-      <div style={{display: 'flex', justifyContent: 'space-between'}} className="settings-container">
-        <div >
+      <div style={{ display: "flex", justifyContent: "space-between" }} className="settings-container">
+        <div>
+
           <Control
             state={state}
             handleBallClick={() => {
@@ -89,7 +92,7 @@ function App({obs}: Props) {
                 setState({
                   ...state,
                   balls: 0
-                })
+                });
 
                 return;
               }
@@ -97,7 +100,7 @@ function App({obs}: Props) {
               setState({
                 ...state,
                 balls: state.balls + 1
-              })
+              });
             }
             }
             handleOutClick={() => {
@@ -113,7 +116,7 @@ function App({obs}: Props) {
               setState({
                 ...state,
                 outs: state.outs + 1
-              })
+              });
             }
             }
             handleStrikeClick={() => {
@@ -121,7 +124,7 @@ function App({obs}: Props) {
                 setState({
                   ...state,
                   strikes: 0
-                })
+                });
 
                 return;
               }
@@ -129,7 +132,7 @@ function App({obs}: Props) {
               setState({
                 ...state,
                 strikes: state.strikes + 1
-              })
+              });
             }
             }
             handleTeamNameChange={(type, name) => {
@@ -137,7 +140,7 @@ function App({obs}: Props) {
                 setState({
                   ...state,
                   home: name
-                })
+                });
 
                 return;
               }
@@ -145,14 +148,14 @@ function App({obs}: Props) {
               setState({
                 ...state,
                 away: name
-              })
+              });
             }
             }
             handleClearBases={() => {
               setState({
                 ...state,
                 bases: []
-              })
+              });
             }
             }
             handleResetCountClick={() => {
@@ -160,21 +163,21 @@ function App({obs}: Props) {
                 ...state,
                 strikes: 0,
                 balls: 0
-              })
+              });
             }
             }
             handleInningChange={(half, value) => {
               setState({
                 ...state,
                 inning: { half, value }
-              })
+              });
             }}
             handleScoreChange={(team, value) => {
               if (team === "home") {
                 setState({
                   ...state,
                   score: [value, state.score[1]]
-                })
+                });
 
                 return;
               }
@@ -182,14 +185,14 @@ function App({obs}: Props) {
               setState({
                 ...state,
                 score: [state.score[0], value]
-              })
+              });
             }}
             handleBaseChange={(base, value) => {
               if (value) {
                 setState({
                   ...state,
                   bases: [...state.bases, base]
-                })
+                });
 
                 return;
               }
@@ -200,17 +203,36 @@ function App({obs}: Props) {
               });
             }}
           />
-          <LogoUpload type={"home"} value={state.homeLogo} handleFileUpload={file => setState({ ...state, homeLogo: file })} />
-          <LogoUpload type={"away"} value={state.awayLogo} handleFileUpload={(file) => setState({ ...state, awayLogo: file })} />
+          <LogoUpload type={"home"} value={state.homeLogo}
+                      handleFileUpload={file => setState({ ...state, homeLogo: file })} />
+          <LogoUpload type={"away"} value={state.awayLogo}
+                      handleFileUpload={(file) => setState({ ...state, awayLogo: file })} />
           <hr />
 
           <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
-          <hr/>
-          <CssGenerator state={state} obs={obs}/>
+          <hr />
+          <div style={{ display: "flex", justifyContent: "space-between" }} className="settings-container">
+            <div>
+              OBS Websocket
+
+            </div>
+            <input type="text" placeholder={DEFAULT_OBS_SOCKET} value={state.obsSocket || DEFAULT_OBS_SOCKET}
+                   onChange={async (event) => {
+                     setState({
+                       ...state,
+                       obsSocket: event.currentTarget.value
+                     });
+
+                     setObs(event.currentTarget.value);
+                   }
+                   }
+            />
+          </div>
+          <TickerControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
+          <CssGenerator state={state} />
         </div>
         <div>
-          Launch OBS with --enable-experimental-web-platform-features<br/>
-          Run OBS Websocker on port 4455<br/>
+          Launch OBS with --enable-experimental-web-platform-features<br />
           Add two browser sources: `hb_score` and `hb_players`
         </div>
       </div>

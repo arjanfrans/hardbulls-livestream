@@ -111,7 +111,7 @@ export const Control = ({
                            onChange={(event) => handleBaseChange(BaseEnum.THIRD, event.currentTarget.checked)}/>
                 </div>
             </div>
-            <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <button onClick={handleOutClick}>
                     Out
                 </button>

@@ -7,6 +7,8 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
     --default-drop-shadow: drop-shadow(1px 1px 0px black);
+    /* drop-shadow(1px 1px 1px #000) drop-shadow(-1px -1px 1px #000) */
+    /* drop-shadow(1px 1px 1px #000000dd) drop-shadow(-1px -1px 1px #000000dd) */
     --font-color-light: ${state.fontColorLight};
     --font-color-dark: ${state.fontColorDark};
     --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);

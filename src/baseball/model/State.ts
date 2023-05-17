@@ -2,6 +2,8 @@ import { BaseEnum } from "./BasesEnum"
 import { InningValue } from "./Inning"
 
 export interface State {
+    obsSocket: string
+    tickerUrl: string
     bases: BaseEnum[]
     home: string
     away: string
@@ -15,8 +17,8 @@ export interface State {
     homeLogo?: string
     awayLogo?: string
     filterColor: string
-    hideBases: false
-    hideCounts: false
+    hideBases: boolean
+    hideCounts: boolean
     homeGradient: [string, string]
     awayGradient: [string, string]
     layoutGradient: [string, string]
