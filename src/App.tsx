@@ -12,6 +12,7 @@ import { TickerControl } from "./TickerControl";
 import { setObs } from "./obs";
 import { PublishSection } from "./PublishSection";
 import { DEFAULT_OBS_SOCKET, DEFAULT_STATE } from "./default-state";
+import { ExportSection } from "./ExportSection";
 
 const LOCAL_STORAGE_KEY = "state"
 
@@ -209,12 +210,14 @@ function App() {
           Launch OBS with --enable-experimental-web-platform-features<br />
           Add two browser sources: `hb_score` and `hb_players`
           <hr/>
-          <button onClick={() => {
-            setState(DEFAULT_STATE);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(DEFAULT_STATE))
-          }}>
-            Reset Settings
-          </button>
+          <ExportSection
+            state={state}
+            handleLoadPreset={(presetState: State) => {
+              setState(presetState);
+            }}
+            handleReset={() => {
+              setState(DEFAULT_STATE);
+          }}/>
           <hr/>
           <PublishSection state={state}/>
         </div>
