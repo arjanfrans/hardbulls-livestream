@@ -16,6 +16,21 @@ const FONTS = [
 ];
 
 export const DisplayControl = ({ handleChange, state }: Props) => {
+  const handleFontSelect = async (name: string) => {
+      const fontBlob = await (await fetch(`${window.location.origin}/fonts/${name}.woff2`)).blob();
+      const encodedFont = await convertFileToBase64(fontBlob);
+
+      handleChange("font", {
+        name: name,
+        data: encodedFont
+      });
+
+      const font = new FontFace(name, `url("${encodedFont}") format("woff2")`);
+      const loadedFont = await font.load();
+
+      document.fonts.add(loadedFont);
+  }
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -27,10 +42,22 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         </button>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          Font Family
+        </div>
+        <div>
+          <select value={state.font?.name} onChange={(event) => handleFontSelect(event.target.value)}>
+            {FONTS.map(font => (
+              <option key={font} value={font}>{font}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>Filter color (greenscreen: 0, 255, 0)</div>
         <ColorPicker color={state.filterColor} onChange={(color) => handleChange("filterColor", color)} />
       </div>
-      <div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>Active Base Color</div>
         <ColorPicker color={state.activeBaseColor} onChange={(color) => handleChange("activeBaseColor", color)} />
         <div>Inactive Base Color</div>
@@ -42,6 +69,7 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         <div>Font Color Dark</div>
         <ColorPicker color={state.fontColorDark} onChange={(color) => handleChange("fontColorDark", color)} />
       </div>
+
       <div>
         Home Logo Shadow<GradientPicker startColor={state.homeLogoShadow[0]} endColor={state.homeLogoShadow[1]}
                                         onChange={(startColor, endColor) => handleChange("homeLogoShadow", [startColor, endColor])} />
@@ -67,33 +95,7 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
                                            endColor={state.backgroundGradient[1]}
                                            onChange={(startColor, endColor) => handleChange("backgroundGradient", [startColor, endColor])} />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          Font Family
-        </div>
-        <div>
-          <select onChange={async (event) => {
-            const name = event.target.value;
-            const fontBlob = await (await fetch(`${window.location.origin}/fonts/${name}.woff2`)).blob();
-            const encodedFont = await convertFileToBase64(fontBlob);
 
-            handleChange("font", {
-              name: name,
-              data: encodedFont
-            });
-
-            const font = new FontFace(name, `url("${encodedFont}") format("woff2")`);
-            const loadedFont = await font.load();
-
-            document.fonts.add(loadedFont);
-          }}>
-            <option></option>
-            {FONTS.map(font => (
-              <option selected={font === state.font?.name} key={font} value={font}>{font}</option>
-            ))}
-          </select>
-        </div>
-      </div>
     </div>
   );
 };

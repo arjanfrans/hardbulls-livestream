@@ -31,4 +31,5 @@ export interface State {
     activeBaseColor: string
     inactiveBaseColor: string
     font?: Font
+    refreshTime?: string
 }

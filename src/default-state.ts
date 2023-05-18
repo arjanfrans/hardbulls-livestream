@@ -34,4 +34,5 @@ export const DEFAULT_STATE: State = {
     tickerUrl: "",
     activeBaseColor: "#ffd300",
     inactiveBaseColor: "#8c8b7f",
+    refreshTime: undefined,
 }

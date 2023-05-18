@@ -194,13 +194,11 @@ function App() {
           <LogoUpload type={"away"} value={state.awayLogo}
                       handleFileUpload={(file) => setState({ ...state, awayLogo: file })} />
           <hr />
-
           <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
           <hr />
-          <div style={{ display: "flex", justifyContent: "space-between" }} className="settings-container">
+          <div style={{ display: "flex", justifyContent: "space-between" }} >
             <div>
               OBS Websocket
-
             </div>
             <input type="text" placeholder={DEFAULT_OBS_SOCKET} value={state.obsSocket || DEFAULT_OBS_SOCKET}
                    onChange={async (event) => {
@@ -230,7 +228,7 @@ function App() {
               setState(DEFAULT_STATE);
           }}/>
           <hr/>
-          <PublishSection state={state}/>
+          <PublishSection state={state} />
           <hr />
           <div>
             <a href="./transitions/logo-drop.webm" download>Download Transition</a>
