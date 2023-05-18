@@ -7,7 +7,9 @@ export const WBSC_OVERLAY_BOX = (state: State) => `
     --primary: #e20514;
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
-    --default-drop-shadow: drop-shadow(2px 2px 0px black);
+    --default-drop-shadow: drop-shadow(2px 2px 0px #00000088) drop-shadow(0px 0px 3px #00000088);
+    --home-drop-shadow: drop-shadow(2px 2px 0px ${state.homeLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.homeLogoShadow[1]});
+    --away-drop-shadow: drop-shadow(2px 2px 0px ${state.awayLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.awayLogoShadow[1]});
     --font-color-light: ${state.fontColorLight};
     --font-color-dark: ${state.fontColorDark};
     --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);
@@ -24,25 +26,47 @@ export const WBSC_OVERLAY_BOX = (state: State) => `
 .box-score-top-bar>div.left-box>div>div:nth-child(1)::before {
     content: "${state.away}";
     margin-right: 10px;
-    background-image: url("${state.awayLogo}");
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-left: 78px;
+    padding-left: 70px;
     margin-left: 4px;
     color: var(--font-color-light);
     filter: var(--default-drop-shadow);
 }
 
+div.box-score-top-bar > div.left-box > div.actual-teams > div:nth-child(1)::after {
+    position: absolute;
+    content: "";
+    margin-right: 10px;
+    background-image: url("${state.awayLogo}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 21px;
+    padding-left: 78px;
+    margin-left: 4px;
+    color: var(--font-color-light);
+    filter: var(--away-drop-shadow);
+}
+
 .box-score-top-bar>div.left-box>div>div:nth-child(3)::before {
     content: "${state.home}";
+    margin-right: 10px;
+    padding-left: 70px;
+    margin-left: 4px;
+    color: var(--font-color-light);
+    filter: var(--default-drop-shadow);
+}
+
+div.box-score-top-bar > div.left-box > div.actual-teams > div:nth-child(3)::after {
+    position: absolute;
+    content: "";
     margin-right: 10px;
     background-image: url("${state.homeLogo}");
     background-size: contain;
     background-repeat: no-repeat;
+    padding: 21px;
     padding-left: 78px;
     margin-left: 4px;
     color: var(--font-color-light);
-    filter: var(--default-drop-shadow);
+    filter: var(--home-drop-shadow);
 }
 
 body {
@@ -141,12 +165,12 @@ body {
     display: flex;
 }
 
-.box-score-top-bar>div.left-box>div.indicators-container>span {
-    display: none;
-}
-
 .box-score-top-bar>div.left-box>div.indicators-container {
     padding: 0 !important;
+}
+
+.box-score-top-bar>div.left-box>div.indicators-container>span {
+    display: none;
 }
 
 .box-score-top-bar>div.left-box>div.indicators-container>div {
@@ -187,11 +211,11 @@ body {
 }
 
 .live-situation .pitch-indicator {
-    margin-left: 46px;
-    margin-right: 56px;
-    margin-top: 30px;
+    margin-left: 35px;
+    margin-right: 45px;
+    margin-top: 26px;
     width: 22px !important;
-    transform: rotate(45deg) scale(4) !important;
+    transform: rotate(45deg) scale(3.5) !important;
 }
 
 .box-score-panel {
@@ -213,7 +237,7 @@ body {
 
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(1),
 #app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(2) {
-    padding: 8px;
+    padding: 7px;
     background: var(--layout-gradient);
 }
 
@@ -228,7 +252,11 @@ body {
 }
 
 
-#app>div>div.box-score-top-bar>div.left-box>div.indicators-container>div>div.pitch-indicator>div.base.is-active {
-    background-color: var(--primary)
+div.indicators-container>div>div.pitch-indicator>div.base.is-active {
+    background-color: ${state.activeBaseColor}
+}
+
+div.indicators-container>div>div.pitch-indicator>div.base:not(.is-active) {
+    background-color: ${state.inactiveBaseColor}
 }
 `

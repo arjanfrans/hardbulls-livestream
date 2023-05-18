@@ -23,6 +23,10 @@ export interface State {
     awayGradient: [string, string]
     layoutGradient: [string, string]
     backgroundGradient: [string, string]
+    homeLogoShadow: [string, string]
+    awayLogoShadow: [string, string]
     fontColorLight: string
     fontColorDark: string
+    activeBaseColor: string
+    inactiveBaseColor: string
 }

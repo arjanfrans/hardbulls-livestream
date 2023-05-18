@@ -10,11 +10,16 @@ export const Score = ({ state }: Props) => {
 
   return (
     <div className="score-container">
-      <div style={{ display: "flex", background: `linear-gradient(0deg, ${state.awayGradient[0]}ff 0%, ${state.awayGradient[1]}ff 100%)`} } className="score-row">
+      <div style={{
+        display: "flex",
+        background: `linear-gradient(0deg, ${state.awayGradient[0]}ff 0%, ${state.awayGradient[1]}ff 100%)`
+      }} className="score-row">
         <div className="away-logo logo">
-          {awayLogo && <img src={awayLogo} alt="" height={"100%"} />}
+          {awayLogo && <img src={awayLogo} alt="" height={"100%"} style={{
+            filter: `drop-shadow(2px 2px 0px ${state.awayLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.awayLogoShadow[1]})`
+          }} />}
         </div>
-        <div className="name-away score-name" style={{color: state.fontColorLight}}>
+        <div className="name-away score-name" style={{ color: state.fontColorLight }}>
           {away}
         </div>
         <div className="score-away score-value" style={{
@@ -25,11 +30,16 @@ export const Score = ({ state }: Props) => {
         </div>
       </div>
 
-      <div style={{ display: "flex", background: `linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%)`} } className="score-row">
+      <div style={{
+        display: "flex",
+        background: `linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%)`
+      }} className="score-row">
         <div className="home-logo logo">
-          {homeLogo && <img src={homeLogo} alt="" height={"100%"} />}
+          {homeLogo && <img src={homeLogo} alt="" height={"100%"} style={{
+            filter: `drop-shadow(2px 2px 0px ${state.homeLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.homeLogoShadow[1]})`
+          }} />}
         </div>
-        <div className="name-home score-name" style={{color: state.fontColorLight}}>
+        <div className="name-home score-name" style={{ color: state.fontColorLight }}>
           {home}
         </div>
         <div className="score-home score-value" style={{

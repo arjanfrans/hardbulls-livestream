@@ -23,11 +23,23 @@ export const DisplayControl = ({handleChange, state}: Props) => {
         <div>Filter color (greenscreen: 0, 255, 0)</div>
         <ColorPicker color={state.filterColor} onChange={(color) => handleChange('filterColor', color)}/>
       </div>
+      <div>
+        <div>Active Base Color</div>
+        <ColorPicker color={state.activeBaseColor} onChange={(color) => handleChange('activeBaseColor', color)}/>
+        <div>Inactive Base Color</div>
+        <ColorPicker color={state.inactiveBaseColor} onChange={(color) => handleChange('inactiveBaseColor', color)}/>
+      </div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>Font Color Light</div>
         <ColorPicker color={state.fontColorLight} onChange={(color) => handleChange('fontColorLight', color)}/>
         <div>Font Color Dark</div>
         <ColorPicker color={state.fontColorDark} onChange={(color) => handleChange('fontColorDark', color)}/>
+      </div>
+      <div>
+        Home Logo Shadow<GradientPicker startColor={state.homeLogoShadow[0]} endColor={state.homeLogoShadow[1]} onChange={(startColor, endColor) => handleChange('homeLogoShadow', [startColor, endColor])}/>
+      </div>
+      <div>
+        Away Logo Shadow<GradientPicker startColor={state.awayLogoShadow[0]} endColor={state.awayLogoShadow[1]} onChange={(startColor, endColor) => handleChange('awayLogoShadow', [startColor, endColor])}/>
       </div>
       <div>
         Home Gradient<GradientPicker startColor={state.homeGradient[0]} endColor={state.homeGradient[1]} onChange={(startColor, endColor) => handleChange('homeGradient', [startColor, endColor])}/>

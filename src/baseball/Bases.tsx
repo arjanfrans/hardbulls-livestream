@@ -1,17 +1,26 @@
-import {BaseEnum} from "./model/BasesEnum";
+import { BaseEnum } from "./model/BasesEnum";
+import { State } from "./model/State";
 
 interface Props {
-    loaded: BaseEnum[]
+  state: State
 }
 
-export const Bases = ({loaded}: Props) => {
-    return (
-        <div className="base-container">
-            <div className="base-rotate-wrapper">
-                <div id="first-base" className={`base ${loaded.includes(BaseEnum.FIRST) ? 'base-on' : 'base-off'}`}></div>
-                <div id="second-base" className={`base ${loaded.includes(BaseEnum.SECOND) ? 'base-on' : 'base-off'}`}></div>
-                <div id="third-base" className={`base ${loaded.includes(BaseEnum.THIRD) ? 'base-on' : 'base-off'}`}></div>
-            </div>
-        </div>
-    )
-}
+export const Bases = ({ state }: Props) => {
+  const activeBaseStyle = {
+    backgroundColor: state.activeBaseColor
+  };
+
+  const inactiveBaseStyle = {
+    backgroundColor: state.inactiveBaseColor
+  };
+
+  return (
+    <div className="base-container">
+      <div className="base-rotate-wrapper">
+        <div id="first-base" style={state.bases.includes(BaseEnum.FIRST) ? activeBaseStyle : inactiveBaseStyle} className="base"></div>
+        <div id="second-base" style={state.bases.includes(BaseEnum.SECOND) ? activeBaseStyle : inactiveBaseStyle} className="base"></div>
+        <div id="third-base" style={state.bases.includes(BaseEnum.THIRD) ? activeBaseStyle : inactiveBaseStyle} className="base"></div>
+      </div>
+    </div>
+  );
+};

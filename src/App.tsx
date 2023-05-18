@@ -3,7 +3,6 @@ import { Bases } from "./baseball/Bases";
 import { Control } from "./baseball/Control";
 import { Score } from "./baseball/Score";
 import { Inning } from "./baseball/Inning";
-import { InningHalfEnum } from "./baseball/model/InningHalfEnum";
 import { Counts } from "./baseball/Counts";
 import { State } from "./baseball/model/State";
 import { LogoUpload } from "./baseball/LogoUpload";
@@ -11,10 +10,12 @@ import { DisplayControl } from "./DisplayControl";
 import { CssGenerator } from "./CssGenerator";
 import { TickerControl } from "./TickerControl";
 import { setObs } from "./obs";
+import { PublishSection } from "./PublishSection";
+import { DEFAULT_OBS_SOCKET, DEFAULT_STATE } from "./default-state";
 
-const DEFAULT_OBS_SOCKET = "ws://127.0.0.1:4455";
+const LOCAL_STORAGE_KEY = "state"
 
-const savedState = localStorage.getItem("state");
+const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
 
 let parsedSavedState = null;
 
@@ -24,34 +25,7 @@ try {
 }
 
 
-let initialState = parsedSavedState ? parsedSavedState : {
-  bases: [],
-  home: "",
-  away: "",
-  score: [0, 0],
-  inning: {
-    value: 0,
-    half: InningHalfEnum.TOP
-  },
-  outs: 0,
-  strikes: 0,
-  balls: 0,
-  homeLogo: undefined,
-  awayLogo: undefined,
-  filterColor: "#00ff00",
-  observe: false,
-  awayTeamId: "",
-  homeTeamId: "24492",
-  hideBases: false,
-  hideCounts: false,
-  homeGradient: ["#dd0808", "#ff5c5c"],
-  awayGradient: ["#0f6709", "#078834"],
-  layoutGradient: ["#8f8f8f", "#b0b0b0"],
-  backgroundGradient: ["#000000", "#474747"],
-  fontColorLight: "#f3f3f3",
-  fontColorDark: "#333333",
-  obsSocket: DEFAULT_OBS_SOCKET
-};
+let initialState = parsedSavedState ? parsedSavedState : DEFAULT_STATE;
 
 setObs(initialState.obsSocket).catch((err) => console.error(err));
 
@@ -78,7 +52,7 @@ function App() {
         }}>
           <Score state={state}></Score>
           <Inning state={state} />
-          {!state.hideBases && <Bases loaded={state.bases}></Bases>}
+          {!state.hideBases && <Bases state={state}></Bases>}
           {!state.hideCounts && <Counts state={state} />}
         </div>
       </div>
@@ -234,6 +208,15 @@ function App() {
         <div>
           Launch OBS with --enable-experimental-web-platform-features<br />
           Add two browser sources: `hb_score` and `hb_players`
+          <hr/>
+          <button onClick={() => {
+            setState(DEFAULT_STATE);
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(DEFAULT_STATE))
+          }}>
+            Reset Settings
+          </button>
+          <hr/>
+          <PublishSection state={state}/>
         </div>
       </div>
 
