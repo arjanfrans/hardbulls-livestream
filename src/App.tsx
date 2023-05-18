@@ -30,6 +30,15 @@ let initialState = parsedSavedState ? parsedSavedState : DEFAULT_STATE;
 
 setObs(initialState.obsSocket).catch((err) => console.error(err));
 
+if (initialState.font) {
+  (async () => {
+    const font = new FontFace(initialState.font.name, `url("${initialState.font.data}") format("woff2")`);
+    const loadedFont = await font.load();
+
+    document.fonts.add(loadedFont);
+  })();
+}
+
 function App() {
   const [state, setState] = useState<State>(initialState);
 
@@ -47,7 +56,9 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="scoreboard">
+      <div className="scoreboard" style={{
+        fontFamily: `${state.font?.name}, sans-serif`
+      }}>
         <div className="scoreboard-top" style={{
           background: `linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%)`
         }}>

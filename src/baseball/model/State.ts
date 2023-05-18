@@ -1,5 +1,6 @@
 import { BaseEnum } from "./BasesEnum"
 import { InningValue } from "./Inning"
+import { Font } from "./Font"
 
 export interface State {
     obsSocket: string
@@ -29,4 +30,5 @@ export interface State {
     fontColorDark: string
     activeBaseColor: string
     inactiveBaseColor: string
+    font?: Font
 }
