@@ -16,7 +16,8 @@ const downloadPreset = async (name: string ) => {
 
 export const ExportSection = ({ state, handleReset, handleLoadPreset }: Props) => {
   const presets = [
-    'BULLS_DUCKS.json'
+    'BULLS_DUCKS.json',
+    'BULLS_INDIANS.json'
   ];
 
   return (
@@ -30,7 +31,11 @@ export const ExportSection = ({ state, handleReset, handleLoadPreset }: Props) =
         </div>
         <div>
           Load preset
-          <select onChange={async (event) => handleLoadPreset(await downloadPreset(event.target.value))}>
+          <select onChange={async (event) => {
+            if (event.target.value) {
+              handleLoadPreset(await downloadPreset(event.target.value))
+            }
+          }}>
             <option></option>
             {presets.map(preset => (
               <option key={preset} value={preset}>{preset}</option>

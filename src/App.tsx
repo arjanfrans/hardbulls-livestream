@@ -220,6 +220,10 @@ function App() {
           }}/>
           <hr/>
           <PublishSection state={state}/>
+          <hr />
+          <div>
+            <a href="./transitions/logo-drop.webm" download>Download Transition</a>
+          </div>
         </div>
       </div>
 
