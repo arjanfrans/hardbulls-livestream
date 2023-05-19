@@ -1,12 +1,19 @@
 {
-  "name": "livestream",
+  "name": "hardbulls-livestream",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Arjan Frans",
+    "email": "arjan@arjanfrans.com",
+    "url": "https://arjanfrans.com"
+  },
+  "homepage": "https://livestream.hardbulls.com",
   "dependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "eslint-plugin-react": "^7.32.2",
     "obs-websocket-js": "^5.0.2",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
@@ -21,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cs-ts": "eslint src --ext ts,tsx",
+    "cs-ts": "eslint src --ext ts,tsx --fix",
     "cs-format": "prettier 'src/**/*.ts' --write --no-semi --tab-width 4 --print-width=120",
     "cs-css": "stylelint src/**/*.css --fix",
     "cs": "npm run cs-format && npm run cs-ts && npm run cs-css"
@@ -32,8 +39,12 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off"
+    }
   },
   "browserslist": {
     "production": [

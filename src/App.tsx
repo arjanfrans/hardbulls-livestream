@@ -15,6 +15,7 @@ import { ExportSection } from "./ExportSection";
 import { generateGradient } from "./service/css";
 import { setObs } from "./service/obs/obs-client";
 import { enhanceState, saveState } from "./state";
+import PACKAGE_JSON from '../package.json'
 
 interface Props {
   initialState: State;
@@ -214,6 +215,10 @@ function App({ initialState }: Props) {
           <hr />
           <div>
             <a href="./transitions/logo-drop.webm" download>Download Transition</a>
+          </div>
+          <hr/>
+          <div>
+            {PACKAGE_JSON.name}@v{PACKAGE_JSON.version} - &copy; {PACKAGE_JSON.author?.name} {new Date().getFullYear()}
           </div>
         </div>
       </div>

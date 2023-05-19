@@ -3,7 +3,7 @@ import { DEFAULT_STATE } from "./default-state"
 import { convertFileToBase64 } from "./service/file-to-base64"
 import { getBlob, getResizedImage } from "./service/assets"
 
-const LOCAL_STORAGE_KEY = "state"
+export const LOCAL_STORAGE_KEY = "state"
 
 export const saveState = (state: State) => {
     localStorage.setItem(
