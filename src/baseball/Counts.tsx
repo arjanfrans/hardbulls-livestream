@@ -1,4 +1,5 @@
 import { State } from "./model/State";
+import { generateGradient } from "../service/css";
 
 interface Props {
   state: State
@@ -7,7 +8,7 @@ export const Counts = ({state}: Props) => {
   const {strikes, balls, outs} = state;
   const style = {
     color: state.fontColorDark,
-    background: `linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%)`
+    background: generateGradient(state.layoutGradient)
   }
     return (
         <div className="counts-container">

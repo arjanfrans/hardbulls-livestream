@@ -7,11 +7,11 @@ interface Props {
 
 export const Bases = ({ state }: Props) => {
   const activeBaseStyle = {
-    backgroundColor: state.activeBaseColor
+    backgroundColor: state.activeIndicatorColor
   };
 
   const inactiveBaseStyle = {
-    backgroundColor: state.inactiveBaseColor
+    backgroundColor: state.inactiveIndicatorColor
   };
 
   return (

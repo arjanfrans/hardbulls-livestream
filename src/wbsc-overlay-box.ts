@@ -1,4 +1,5 @@
 import { State } from "./baseball/model/State"
+import { generateGradient } from "./service/css"
 
 export const WBSC_OVERLAY_BOX = (state: State) => `
 
@@ -8,14 +9,18 @@ export const WBSC_OVERLAY_BOX = (state: State) => `
     --bg-gray: #d3d3d3;
     --default-border: 2px solid gray;
     --default-drop-shadow: drop-shadow(2px 2px 0px #00000088) drop-shadow(0px 0px 3px #00000088);
-    --home-drop-shadow: drop-shadow(2px 2px 0px ${state.homeLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.homeLogoShadow[1]});
-    --away-drop-shadow: drop-shadow(2px 2px 0px ${state.awayLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.awayLogoShadow[1]});
+    --home-drop-shadow: drop-shadow(2px 2px 0px ${state.homeLogoShadow[0]}88) drop-shadow(0px 0px 3px ${
+    state.homeLogoShadow[1]
+});
+    --away-drop-shadow: drop-shadow(2px 2px 0px ${state.awayLogoShadow[0]}88) drop-shadow(0px 0px 3px ${
+    state.awayLogoShadow[1]
+});
     --font-color-light: ${state.fontColorLight};
     --font-color-dark: ${state.fontColorDark};
-    --home-gradient: linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%);
-    --away-gradient: linear-gradient(0deg, ${state.awayGradient[0]}ff 0%, ${state.awayGradient[1]}ff 100%);
-    --layout-gradient: linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%);
-    --background-gradient: linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%);
+    --home-gradient: ${generateGradient(state.homeGradient)};
+    --away-gradient: ${generateGradient(state.awayGradient)};
+    --layout-gradient: ${generateGradient(state.layoutGradient)};
+    --background-gradient: ${generateGradient(state.backgroundGradient)};
 }
 
 @font-face {
@@ -252,10 +257,10 @@ div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicat
 
 
 div.indicators-container>div>div.pitch-indicator>div.base.is-active {
-    background-color: ${state.activeBaseColor}
+    background-color: ${state.activeIndicatorColor}
 }
 
 div.indicators-container>div>div.pitch-indicator>div.base:not(.is-active) {
-    background-color: ${state.inactiveBaseColor}
+    background-color: ${state.inactiveIndicatorColor}
 }
 `

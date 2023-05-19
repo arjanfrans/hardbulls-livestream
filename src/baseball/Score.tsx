@@ -1,4 +1,5 @@
 import { State } from "./model/State";
+import { generateGradient } from "../service/css";
 
 interface Props {
   state: State,
@@ -12,7 +13,7 @@ export const Score = ({ state }: Props) => {
     <div className="score-container">
       <div style={{
         display: "flex",
-        background: `linear-gradient(0deg, ${state.awayGradient[0]}ff 0%, ${state.awayGradient[1]}ff 100%)`
+        background: generateGradient(state.awayGradient)
       }} className="score-row">
         <div className="away-logo logo">
           {awayLogo && <img src={awayLogo} alt="" height={"100%"} style={{
@@ -24,7 +25,7 @@ export const Score = ({ state }: Props) => {
         </div>
         <div className="score-away score-value" style={{
           color: state.fontColorDark,
-          background: `linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%)`
+          background: generateGradient(state.layoutGradient)
         }}>
           {awayScore}
         </div>
@@ -32,7 +33,7 @@ export const Score = ({ state }: Props) => {
 
       <div style={{
         display: "flex",
-        background: `linear-gradient(0deg, ${state.homeGradient[0]}ff 0%, ${state.homeGradient[1]}ff 100%)`
+        background: generateGradient(state.homeGradient)
       }} className="score-row">
         <div className="home-logo logo">
           {homeLogo && <img src={homeLogo} alt="" height={"100%"} style={{
@@ -44,7 +45,7 @@ export const Score = ({ state }: Props) => {
         </div>
         <div className="score-home score-value" style={{
           color: state.fontColorDark,
-          background: `linear-gradient(0deg, ${state.layoutGradient[0]}ff 0%, ${state.layoutGradient[1]}ff 100%)`
+          background: generateGradient(state.layoutGradient)
         }}>
           {homeScore}
         </div>

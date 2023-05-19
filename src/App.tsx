@@ -13,6 +13,7 @@ import { setObs } from "./obs";
 import { PublishSection } from "./PublishSection";
 import { DEFAULT_OBS_SOCKET, DEFAULT_STATE } from "./default-state";
 import { ExportSection } from "./ExportSection";
+import { generateGradient } from "./service/css";
 
 const LOCAL_STORAGE_KEY = "state"
 
@@ -60,7 +61,7 @@ function App() {
         fontFamily: `${state.font?.name}, sans-serif`
       }}>
         <div className="scoreboard-top" style={{
-          background: `linear-gradient(0deg, ${state.backgroundGradient[0]}ff 0%, ${state.backgroundGradient[1]}ff 100%)`
+          background: generateGradient(state.backgroundGradient)
         }}>
           <Score state={state}></Score>
           <Inning state={state} />

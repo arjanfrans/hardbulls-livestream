@@ -1,38 +1,64 @@
 import { useState } from "react"
+import { Gradient } from "./baseball/model/Gradient";
+import { generateGradient } from "./service/css";
 
 interface Props {
-    startColor: string
-    endColor: string
-    onChange: (startColor: string, endColor: string) => void
+    gradient: Gradient,
+    onChange: (gradient: Gradient) => void
 }
 
-export const GradientPicker = ({startColor, endColor, onChange}: Props) => {
-  const [selectedStartColor, setStartColor] = useState<string>(startColor)
-  const [selectedEndColor, setEndColor] = useState<string>(endColor)
-
-  const generateGradient = () => {
-    return `linear-gradient(0deg, ${selectedStartColor}ff 0%, ${selectedEndColor}ff 100%)`
-  }
+export const GradientPicker = ({gradient, onChange}: Props) => {
+  const [selectedGradient, setGradient] = useState<Gradient>(gradient)
 
   return (
-    <div style={{background: generateGradient()}}>
+    <div>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div style={{display: 'flex', flexDirection: 'row'}}>
           <input
             type="color"
-            value={selectedStartColor}
-            onChange={(event) => setStartColor(event.currentTarget.value)}
-            onBlur={() => onChange(selectedStartColor, selectedEndColor)}
+            value={gradient.startColor}
+            onChange={(event) => setGradient({ ...selectedGradient, startColor: event.target.value})}
+            onBlur={() => onChange(selectedGradient)}
           />
         <input
             type="color"
-            value={selectedEndColor}
-            onChange={(event) => setEndColor(event.currentTarget.value)}
-            onBlur={() => onChange(selectedStartColor, selectedEndColor)}
+            value={gradient.endColor}
+            onChange={(event) => setGradient({ ...selectedGradient, endColor: event.target.value})}
+            onBlur={() => onChange(selectedGradient)}
+          />
+          Angle
+          <input
+            type="number"
+            value={gradient.angle}
+            onChange={(event) => onChange({ ...gradient, angle: event.target.valueAsNumber})}
+            step={5}
+            style={{
+              width: '3em'
+            }}
+          />
+          %
+          <input
+            type="range"
+            min={0}
+            step={10}
+            max={100}
+            value={gradient.startPercentage}
+            onChange={(event) => onChange({ ...gradient, startPercentage: event.target.valueAsNumber})}
+          />
+          %
+          <input
+            type="range"
+            min={0}
+            step={10}
+            max={100}
+            value={gradient.endPercentage}
+            onChange={(event) => onChange({ ...gradient, endPercentage: event.target.valueAsNumber})}
           />
         </div>
-        <div>
-            <input type="text" disabled value={generateGradient()}></input>
+        <div style={{
+          background: generateGradient(gradient)
+        }}>
+            <input type="text" disabled value={generateGradient(gradient)}></input>
         </div>
       </div>
     </div>
