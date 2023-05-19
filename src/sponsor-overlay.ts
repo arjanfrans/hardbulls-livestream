@@ -29,30 +29,38 @@ body {
     background-color: ${state.filterColor} !important;
     color: var(--font-color-dark);
 }
-.cd-section-content >div.cd-row:nth-child(1) .cd-sponsors-item::before {
-    font-family: ${state.font?.name}, sans-serif;
-    font-size: 20px;
-    content: 'BULLS sponsored by';
-    color: var(--font-color-dark);
-    background: var(--layout-gradient);
-    display: block;
-    margin-right: -5px;
-    margin-left: -5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 5px;
-    margin-top: -5px;
-}
 
-.cd-section-content >div.cd-row:nth-child(1) .cd-sponsors-item {
-    border: var(--default-border) !important;
-    background: var(--background-gradient) !important;
-    border: 2px solid black;
-}
 
 .owl-lazy {
     transition: none !important;
 }
+
+.cd-section-content >div.cd-row:nth-child(1) .cd-carousel-container .owl-stage-outer {
+	border: var(--default-border) !important;
+    background: var(--background-gradient) !important;
+    border: 2px solid black;
+    max-width: 300px;
+
+}
+
+.cd-section-content >div.cd-row:nth-child(1) .cd-carousel-container .owl-stage-outer .cd-sponsors-item {
+    padding-right: 10px !important;
+    margin-bottom: 0px !important;
+    max-width: 300px;
+}
+
+
+.cd-section-content >div.cd-row:nth-child(1) .cd-carousel-container .owl-stage-outer::before {
+    font-family: HudsonNYSemiBold, sans-serif;
+    font-size: 20px;
+    content: 'Bulls are sponsored by';
+    color: var(--font-color-dark);
+    background: var(--layout-gradient);
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 .cd-section-content >div.cd-row:nth-child(2) .cd-carousel-container .cd-tile-container{
 	background: var(--background-gradient) !important;
