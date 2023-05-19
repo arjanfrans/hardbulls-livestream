@@ -75,12 +75,19 @@ export const refreshBrowsers = async () => {
                 propertyName: "refreshnocache",
             },
         },
+        {
+            requestType: "PressInputPropertiesButton",
+            requestData: {
+                inputName: "hb_sponsors",
+                propertyName: "refreshnocache",
+            },
+        },
     ])
 
     await enableSceneItems()
 }
 
-export const publishCss = async (scoreCss: string, playersCss: string) => {
+export const publishCss = async (scoreCss: string, playersCss: string, sponsorsCss: string) => {
     await disableSceneItems()
     await getObs()?.callBatch([
         {
@@ -98,6 +105,16 @@ export const publishCss = async (scoreCss: string, playersCss: string) => {
                 inputName: "hb_players",
                 inputSettings: {
                     css: playersCss,
+                },
+            },
+        },
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_sponsors",
+                inputSettings: {
+                    css: sponsorsCss,
+                    height: 800,
                 },
             },
         },
