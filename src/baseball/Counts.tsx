@@ -12,8 +12,15 @@ export const Counts = ({state}: Props) => {
   }
     return (
         <div className="counts-container">
-            <div className="counts-top" style={style}><span>{balls} - {strikes}</span></div>
-            <div className="counts-bottom" style={style}><span>{outs} out</span></div>
+            <div className="counts-top" style={style}>
+              <span>{balls}</span>
+              <span className="count-separator">-</span>
+              <span>{strikes}</span>
+            </div>
+            <div className="counts-bottom" style={style}>
+              <span className="outs-count">{outs}</span>
+              <span className="outs-text">out</span>
+            </div>
         </div>
     )
 }
