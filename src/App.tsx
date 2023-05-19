@@ -14,37 +14,17 @@ import { DEFAULT_OBS_SOCKET, DEFAULT_STATE } from "./default-state";
 import { ExportSection } from "./ExportSection";
 import { generateGradient } from "./service/css";
 import { setObs } from "./service/obs/obs-client";
+import { enhanceState, saveState } from "./state";
 
-const LOCAL_STORAGE_KEY = "state"
-
-const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-let parsedSavedState = null;
-
-try {
-  parsedSavedState = savedState && JSON.parse(savedState);
-} catch (error) {
+interface Props {
+  initialState: State;
 }
 
-
-let initialState = parsedSavedState ? parsedSavedState : DEFAULT_STATE;
-
-setObs(initialState.obsSocket).catch((err) => console.error(err));
-
-if (initialState.font) {
-  (async () => {
-    const font = new FontFace(initialState.font.name, `url("${initialState.font.data}") format("woff2")`);
-    const loadedFont = await font.load();
-
-    document.fonts.add(loadedFont);
-  })();
-}
-
-function App() {
+function App({ initialState }: Props) {
   const [state, setState] = useState<State>(initialState);
 
   useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
+    saveState(state);
   }, [state]);
 
   useEffect(() => {
@@ -190,14 +170,14 @@ function App() {
               });
             }}
           />
-          <LogoUpload type={"home"} value={state.homeLogo}
+          <LogoUpload type={"home"} value={state.homeLogo?.name}
                       handleFileUpload={file => setState({ ...state, homeLogo: file })} />
-          <LogoUpload type={"away"} value={state.awayLogo}
+          <LogoUpload type={"away"} value={state.awayLogo?.name}
                       handleFileUpload={(file) => setState({ ...state, awayLogo: file })} />
           <hr />
           <DisplayControl state={state} handleChange={(key, value) => setState({ ...state, [key]: value })} />
           <hr />
-          <div style={{ display: "flex", justifyContent: "space-between" }} >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               OBS Websocket
             </div>
@@ -218,17 +198,18 @@ function App() {
         </div>
         <div>
           Launch OBS with --enable-experimental-web-platform-features<br />
+          Add a scene for the overlay: `hb_overlay`<br />
           Add two browser sources: `hb_score` and `hb_players`
-          <hr/>
+          <hr />
           <ExportSection
             state={state}
-            handleLoadPreset={(presetState: State) => {
-              setState(presetState);
+            handleLoadPreset={async (presetState: State) => {
+              setState(await enhanceState(presetState));
             }}
             handleReset={() => {
               setState(DEFAULT_STATE);
-          }}/>
-          <hr/>
+            }} />
+          <hr />
           <PublishSection state={state} />
           <hr />
           <div>

@@ -17,13 +17,13 @@ export const GradientPicker = ({gradient, onChange}: Props) => {
           <input
             type="color"
             value={gradient.startColor}
-            onChange={(event) => setGradient({ ...selectedGradient, startColor: event.target.value})}
+            onChange={(event) => setGradient({ ...gradient, startColor: event.target.value})}
             onBlur={() => onChange(selectedGradient)}
           />
         <input
             type="color"
             value={gradient.endColor}
-            onChange={(event) => setGradient({ ...selectedGradient, endColor: event.target.value})}
+            onChange={(event) => setGradient({ ...gradient, endColor: event.target.value})}
             onBlur={() => onChange(selectedGradient)}
           />
           Angle

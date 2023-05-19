@@ -26,15 +26,13 @@ export const Inning = ({state}: Props) => {
     return (
         <div className="inning-container" style={{
           color: state.fontColorDark,
-          background: generateGradient(state.layoutGradient)
+          background: generateGradient(state.layoutGradient),
         }}>
-            <div style={{marginBottom: '-10px'}}>
+          {inning.value}
+          <div className="inning-indicator-top">
                 {renderInningSvg(InningHalfEnum.TOP, inning.half === InningHalfEnum.TOP, activeColor, inactiveColor)}
             </div>
-            <div>
-                {inning.value}
-            </div>
-            <div style={{marginTop: '-3px'}}>
+            <div className="inning-indicator-bottom">
                 {renderInningSvg(InningHalfEnum.BOTTOM, inning.half === InningHalfEnum.BOTTOM, activeColor, inactiveColor)}
             </div>
         </div>

@@ -1,4 +1,4 @@
 export interface Font {
     name: string
-    data: string
+    data?: string
 }

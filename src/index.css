@@ -11,10 +11,6 @@ body {
     padding-top: 32px;
 }
 
-.inning-container {
-    box-sizing: revert !important;
-}
-
 .scoreboard {
     font-size: 32px;
     height: 100px;

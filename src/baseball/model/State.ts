@@ -2,6 +2,7 @@ import { BaseEnum } from "./BasesEnum"
 import { InningValue } from "./Inning"
 import { Font } from "./Font"
 import { Gradient } from "./Gradient"
+import { Image } from "./Image"
 
 export interface State {
     obsSocket: string
@@ -16,8 +17,8 @@ export interface State {
     outs: number
     strikes: number
     balls: number
-    homeLogo?: string
-    awayLogo?: string
+    homeLogo?: Image
+    awayLogo?: Image
     filterColor: string
     hideBases: boolean
     hideCounts: boolean

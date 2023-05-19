@@ -12,7 +12,7 @@ export const ColorPicker = ({ color, onChange }: Props) => {
     <div>
       <input
         type="color"
-        value={selectedColor}
+        value={color}
         onChange={(event) => setSelectedColor(event.currentTarget.value)}
         onBlur={() => onChange(selectedColor)}
       />

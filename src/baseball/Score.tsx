@@ -16,7 +16,7 @@ export const Score = ({ state }: Props) => {
         background: generateGradient(state.awayGradient)
       }} className="score-row">
         <div className="away-logo logo">
-          {awayLogo && <img src={awayLogo} alt="" height={"100%"} style={{
+          {awayLogo?.data && <img src={awayLogo.data} alt="" height={"100%"} style={{
             filter: `drop-shadow(2px 2px 0px ${state.awayLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.awayLogoShadow[1]})`
           }} />}
         </div>
@@ -36,7 +36,7 @@ export const Score = ({ state }: Props) => {
         background: generateGradient(state.homeGradient)
       }} className="score-row">
         <div className="home-logo logo">
-          {homeLogo && <img src={homeLogo} alt="" height={"100%"} style={{
+          {homeLogo?.data && <img src={homeLogo.data} alt="" height={"100%"} style={{
             filter: `drop-shadow(2px 2px 0px ${state.homeLogoShadow[0]}88) drop-shadow(0px 0px 3px ${state.homeLogoShadow[1]})`
           }} />}
         </div>

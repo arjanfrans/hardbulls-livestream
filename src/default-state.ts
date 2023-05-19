@@ -1,5 +1,6 @@
 import { InningHalfEnum } from "./baseball/model/InningHalfEnum"
 import { State } from "./baseball/model/State"
+import { CONFIG } from "./config"
 
 export const DEFAULT_OBS_SOCKET = "ws://127.0.0.1:4455"
 
@@ -54,6 +55,9 @@ export const DEFAULT_STATE: State = {
     awayLogoShadow: ["#000000", "#000000"],
     fontColorLight: "#f3f3f3",
     fontColorDark: "#333333",
+    font: {
+        name: CONFIG.fonts[0],
+    },
     obsSocket: DEFAULT_OBS_SOCKET,
     tickerUrl: "",
     activeBaseColor: "#ffd300",

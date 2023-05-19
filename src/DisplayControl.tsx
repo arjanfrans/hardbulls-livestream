@@ -4,21 +4,17 @@ import { GradientPicker } from "./GradientPicker";
 
 import { ColorPicker } from "./ColorPicker";
 import { convertFileToBase64 } from "./service/file-to-base64";
+import { getBlob } from "./service/assets";
+import { CONFIG } from "./config";
 
 interface Props {
   state: State,
   handleChange: <T extends keyof State>(key: T, value: State[T]) => void;
 }
 
-const FONTS = [
-  "EurostileBold",
-  "NeueAachenBlack"
-];
-
 export const DisplayControl = ({ handleChange, state }: Props) => {
   const handleFontSelect = async (name: string) => {
-      const fontBlob = await (await fetch(`${window.location.origin}/fonts/${name}.woff2`)).blob();
-      const encodedFont = await convertFileToBase64(fontBlob);
+      const encodedFont = await convertFileToBase64(await getBlob(`fonts/${name}.woff2`));
 
       handleChange("font", {
         name: name,
@@ -47,7 +43,7 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         </div>
         <div>
           <select value={state.font?.name} onChange={(event) => handleFontSelect(event.target.value)}>
-            {FONTS.map(font => (
+            {CONFIG.fonts.map(font => (
               <option key={font} value={font}>{font}</option>
             ))}
           </select>

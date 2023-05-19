@@ -171,7 +171,7 @@ div.actual-players div.player-stats > p.role-and-stats {
 
 div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats::after {
     content: "";
-    background-image: url("${state.homeLogo}");
+    background-image: url("${state.homeLogo?.data}");
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;
@@ -183,7 +183,7 @@ div.player-stats:has(> a[href*="/teams/${state.homeTeamId}"]) > .role-and-stats:
 
 div.player-stats:has(> a[href*="/teams/${state.awayTeamId}"]) > .role-and-stats::after {
     content: "";
-    background-image: url("${state.awayLogo}");
+    background-image: url("${state.awayLogo?.data}");
     background-size: contain;  
     background-repeat: no-repeat;
     position: absolute;

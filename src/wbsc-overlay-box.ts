@@ -41,7 +41,7 @@ div.box-score-top-bar > div.left-box > div.actual-teams > div:nth-child(1)::afte
     position: absolute;
     content: "";
     margin-right: 10px;
-    background-image: url("${state.awayLogo}");
+    background-image: url("${state.awayLogo?.data}");
     background-size: contain;
     background-repeat: no-repeat;
     padding: 21px;
@@ -49,6 +49,10 @@ div.box-score-top-bar > div.left-box > div.actual-teams > div:nth-child(1)::afte
     margin-left: 4px;
     color: var(--font-color-light);
     filter: var(--away-drop-shadow);
+}
+
+.outs-indicator strong {
+  font-weight: normal !important;
 }
 
 .box-score-top-bar>div.left-box>div>div:nth-child(3)::before {
@@ -64,7 +68,7 @@ div.box-score-top-bar > div.left-box > div.actual-teams > div:nth-child(3)::afte
     position: absolute;
     content: "";
     margin-right: 10px;
-    background-image: url("${state.homeLogo}");
+    background-image: url("${state.homeLogo?.data}");
     background-size: contain;
     background-repeat: no-repeat;
     padding: 21px;
@@ -232,14 +236,13 @@ div.box-score-top-bar>div.center-box>div>div.tournament {
 }
 
 div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator {
-    width: 94px;
+    width: max-content;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: var(--large-font-size)
 }
-
 
 div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicator>p:nth-child(1) {
     letter-spacing: 6px;

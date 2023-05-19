@@ -59,14 +59,31 @@
     padding-right: 6px;
     margin-left: 6px;
     margin-right: 6px;
+    position: relative;
+    box-sizing: revert !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+.inning-indicator-top {
+    position: absolute;
+    top: 0;
+    margin-left: 2px;
+}
+
+.inning-indicator-bottom {
+    position: absolute;
+    bottom: -8px;
+    margin-left: 2px;
+}
 
 .counts-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100px;
+    min-width: 100px;
     text-align: center;
     margin-left: 6px;
 }
@@ -75,16 +92,18 @@
     padding-left: 6px;
     padding-right: 6px;
     height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .counts-bottom {
     padding-left: 6px;
     padding-right: 6px;
     height: 45px;
-}
-
-.counts-bottom > span, .counts-top > span {
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
