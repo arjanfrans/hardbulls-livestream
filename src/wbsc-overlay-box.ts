@@ -201,7 +201,7 @@ body {
 
 .box-score-top-bar>div.left-box>div.indicators-container>div>div.inning-indicator .triangle {
     left: 19px !important;
-    border-bottom: 6px solid #e20514 !important;
+    border-bottom: 6px solid ${state.activeInningColor} !important;
     transform: scale(3);
     margin-left: 2px;
 }
@@ -257,10 +257,10 @@ div.box-score-top-bar>div.left-box>div.indicators-container>div>div.outs-indicat
 
 
 div.indicators-container>div>div.pitch-indicator>div.base.is-active {
-    background-color: ${state.activeIndicatorColor}
+    background-color: ${state.activeBaseColor}
 }
 
 div.indicators-container>div>div.pitch-indicator>div.base:not(.is-active) {
-    background-color: ${state.inactiveIndicatorColor}
+    background-color: ${state.inactiveBaseColor}
 }
 `

@@ -56,7 +56,9 @@ export const DEFAULT_STATE: State = {
     fontColorDark: "#333333",
     obsSocket: DEFAULT_OBS_SOCKET,
     tickerUrl: "",
-    activeIndicatorColor: "#ffd300",
-    inactiveIndicatorColor: "#8c8b7f",
+    activeBaseColor: "#ffd300",
+    inactiveBaseColor: "#8c8b7f",
+    activeInningColor: "#ffd300",
+    inactiveInningColor: "#8c8b7f",
     refreshTime: undefined,
 }

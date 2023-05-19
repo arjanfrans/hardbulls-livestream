@@ -58,10 +58,14 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         <ColorPicker color={state.filterColor} onChange={(color) => handleChange("filterColor", color)} />
       </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>Active Indicator Color</div>
-        <ColorPicker color={state.activeIndicatorColor} onChange={(color) => handleChange("activeIndicatorColor", color)} />
-        <div>Inactive Indicator Color</div>
-        <ColorPicker color={state.inactiveIndicatorColor} onChange={(color) => handleChange("inactiveIndicatorColor", color)} />
+        <div>Active Base Color</div>
+        <ColorPicker color={state.activeBaseColor} onChange={(color) => handleChange("activeBaseColor", color)} />
+        <div>Inactive Base Color</div>
+        <ColorPicker color={state.inactiveBaseColor} onChange={(color) => handleChange("inactiveBaseColor", color)} />
+          <div>Active Inning Color</div>
+          <ColorPicker color={state.activeInningColor} onChange={(color) => handleChange("activeInningColor", color)} />
+          <div>Inactive Inning Color</div>
+          <ColorPicker color={state.inactiveInningColor} onChange={(color) => handleChange("inactiveInningColor", color)} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>Font Color Light</div>

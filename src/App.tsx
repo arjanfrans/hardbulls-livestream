@@ -9,11 +9,11 @@ import { LogoUpload } from "./baseball/LogoUpload";
 import { DisplayControl } from "./DisplayControl";
 import { CssGenerator } from "./CssGenerator";
 import { TickerControl } from "./TickerControl";
-import { setObs } from "./obs";
 import { PublishSection } from "./PublishSection";
 import { DEFAULT_OBS_SOCKET, DEFAULT_STATE } from "./default-state";
 import { ExportSection } from "./ExportSection";
 import { generateGradient } from "./service/css";
+import { setObs } from "./service/obs/obs-client";
 
 const LOCAL_STORAGE_KEY = "state"
 

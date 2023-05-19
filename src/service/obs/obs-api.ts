@@ -1,0 +1,131 @@
+import { RequestBatchRequest } from "obs-websocket-js/dist/types"
+import { getObs } from "./obs-client"
+
+export const getSceneItemIds = async (): Promise<number[]> => {
+    const response = await getObs()?.callBatch([
+        {
+            requestType: "GetSceneItemId",
+            requestData: {
+                sceneName: "hb_overlay",
+                sourceName: "hb_players",
+            },
+        },
+        {
+            requestType: "GetSceneItemId",
+            requestData: {
+                sceneName: "hb_overlay",
+                sourceName: "hb_score",
+            },
+        },
+    ])
+
+    return response
+        ? response.map((response: any) => {
+              return response.responseData?.sceneItemId
+          })
+        : []
+}
+
+export const enableSceneItems = async () => {
+    const requestData = (await getSceneItemIds()).map((sceneItemId) => {
+        return {
+            requestType: "SetSceneItemEnabled",
+            requestData: {
+                sceneItemEnabled: true,
+                sceneName: "hb_overlay",
+                sceneItemId: sceneItemId,
+            },
+        }
+    }) as RequestBatchRequest[]
+
+    setTimeout(async () => {
+        await getObs()?.callBatch(requestData)
+    }, 2000)
+}
+
+const disableSceneItems = async () => {
+    const requestData = (await getSceneItemIds()).map((sceneItemId) => {
+        return {
+            requestType: "SetSceneItemEnabled",
+            requestData: {
+                sceneItemEnabled: false,
+                sceneName: "hb_overlay",
+                sceneItemId: sceneItemId,
+            },
+        }
+    }) as RequestBatchRequest[]
+
+    await getObs()?.callBatch(requestData)
+}
+
+export const refreshBrowsers = async () => {
+    await disableSceneItems()
+    await getObs()?.callBatch([
+        {
+            requestType: "PressInputPropertiesButton",
+            requestData: {
+                inputName: "hb_score",
+                propertyName: "refreshnocache",
+            },
+        },
+        {
+            requestType: "PressInputPropertiesButton",
+            requestData: {
+                inputName: "hb_players",
+                propertyName: "refreshnocache",
+            },
+        },
+    ])
+
+    await enableSceneItems()
+}
+
+export const publishCss = async (scoreCss: string, playersCss: string) => {
+    await disableSceneItems()
+    await getObs()?.callBatch([
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_score",
+                inputSettings: {
+                    css: scoreCss,
+                },
+            },
+        },
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_players",
+                inputSettings: {
+                    css: playersCss,
+                },
+            },
+        },
+    ])
+    await enableSceneItems()
+}
+
+export const publishTickerUrl = async (tickerUrl: string) => {
+    await disableSceneItems()
+    await getObs()?.callBatch([
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_score",
+                inputSettings: {
+                    url: tickerUrl,
+                },
+            },
+        },
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_players",
+                inputSettings: {
+                    url: tickerUrl,
+                },
+            },
+        },
+    ])
+    await enableSceneItems()
+}

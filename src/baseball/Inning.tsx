@@ -20,8 +20,8 @@ const renderInningSvg = (inningHalf: InningHalfEnum, isCurrent: boolean, activeC
 }
 export const Inning = ({state}: Props) => {
   const inning = state.inning;
-  const inactiveColor = state.inactiveIndicatorColor
-  const activeColor = state.activeIndicatorColor
+  const inactiveColor = state.inactiveInningColor
+  const activeColor = state.activeInningColor
 
     return (
         <div className="inning-container" style={{

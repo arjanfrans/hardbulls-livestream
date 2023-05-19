@@ -29,8 +29,10 @@ export interface State {
     awayLogoShadow: [string, string]
     fontColorLight: string
     fontColorDark: string
-    activeIndicatorColor: string
-    inactiveIndicatorColor: string
+    activeBaseColor: string
+    inactiveBaseColor: string
+    activeInningColor: string
+    inactiveInningColor: string
     font?: Font
     refreshTime?: string
 }
