@@ -1,1 +1,76 @@
-{"bases":[3],"home":"BULLS","away":"DUCKS","score":[0,0],"inning":{"value":0,"half":0},"outs":0,"strikes":0,"balls":0,"homeLogo":{"name":"logo_hb.png"},"awayLogo":{"name":"logo_dd.png"},"filterColor":"#00ff00","awayTeamId":"24475","homeTeamId":"24492","hideBases":false,"hideCounts":false,"homeGradient":{"angle":180,"startPercentage":30,"endPercentage":50,"startColor":"#dd0808","endColor":"#ea1010"},"awayGradient":{"angle":180,"startPercentage":30,"endPercentage":50,"startColor":"#545454","endColor":"#696969"},"layoutGradient":{"angle":180,"startPercentage":50,"endPercentage":50,"startColor":"#ebebeb","endColor":"#e0e0e0"},"backgroundGradient":{"angle":180,"startPercentage":0,"endPercentage":100,"startColor":"#000000","endColor":"#474747"},"homeLogoShadow":["#000000","#000000"],"awayLogoShadow":["#000000","#000000"],"fontColorLight":"#e8e8e8","fontColorDark":"#292929","obsSocket":"ws://127.0.0.1:4455","tickerUrl":"file:///home/arjan/code/livestream/public/preview/preview.html","activeBaseColor":"#f40000","inactiveBaseColor":"#c7c7c7","activeInningColor":"#e00000","inactiveInningColor":"#b3b3b3","font":{"name":"HudsonNYSemiBold"}}
+{
+    "bases": [
+        3
+    ],
+    "home": "BULLS",
+    "away": "DUCKS",
+    "score": [
+        0,
+        0
+    ],
+    "inning": {
+        "value": 0,
+        "half": 0
+    },
+    "outs": 0,
+    "strikes": 0,
+    "balls": 0,
+    "homeLogo": {
+        "name": "logo_hb.png"
+    },
+    "awayLogo": {
+        "name": "logo_dd.png"
+    },
+    "filterColor": "#00ff00",
+    "awayTeamId": "24475",
+    "homeTeamId": "24492",
+    "hideBases": false,
+    "hideCounts": false,
+    "homeGradient": {
+        "angle": 180,
+        "startPercentage": 30,
+        "endPercentage": 50,
+        "startColor": "#dd0808",
+        "endColor": "#ea1010"
+    },
+    "awayGradient": {
+        "angle": 180,
+        "startPercentage": 30,
+        "endPercentage": 50,
+        "startColor": "#545454",
+        "endColor": "#696969"
+    },
+    "layoutGradient": {
+        "angle": 180,
+        "startPercentage": 50,
+        "endPercentage": 50,
+        "startColor": "#ebebeb",
+        "endColor": "#e0e0e0"
+    },
+    "backgroundGradient": {
+        "angle": 180,
+        "startPercentage": 0,
+        "endPercentage": 100,
+        "startColor": "#000000",
+        "endColor": "#474747"
+    },
+    "homeLogoShadow": [
+        "#000000",
+        "#000000"
+    ],
+    "awayLogoShadow": [
+        "#000000",
+        "#000000"
+    ],
+    "fontColorLight": "#e8e8e8",
+    "fontColorDark": "#292929",
+    "obsSocket": "ws://127.0.0.1:4455",
+    "tickerUrl": "",
+    "activeBaseColor": "#f40000",
+    "inactiveBaseColor": "#c7c7c7",
+    "activeInningColor": "#e00000",
+    "inactiveInningColor": "#b3b3b3",
+    "font": {
+        "name": "HudsonNYSemiBold"
+    }
+}
