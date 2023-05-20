@@ -63,13 +63,13 @@ body {
 
 
 .cd-section-content >div.cd-row:nth-child(2) .cd-carousel-container .cd-tile-container{
-	background: var(--background-gradient) !important;
 	padding: 10px;
 	margin-bottom: -10px;
-	
 }
+
 .cd-section-content >div.cd-row:nth-child(2) .cd-carousel-container .owl-stage-outer {
 	border: var(--default-border) !important;
+    background: var(--background-gradient) !important;
 }
 
 .cd-section-content >div.cd-row:nth-child(2) .cd-carousel-container .owl-stage-outer::before {
