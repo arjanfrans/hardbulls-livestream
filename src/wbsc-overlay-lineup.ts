@@ -32,9 +32,13 @@ html {
 
 body {
     background-color: #0000ff !important;
-    font-family: EurostileBold, sans-serif;
+    font-family: ${state.font?.name};
     color: var(--font-color-dark);
     margin: 0;
+}
+
+p, span, td, th {
+    font-size: 24px !important;
 }
 
 .game-info {
@@ -86,10 +90,12 @@ body {
 	padding-right: 4px;
 }
 
-td.player-index {
+
+td.player-index, th.player-index {
 	text-align: center;
 	font-size: 20px !important;
 }
+
 
 .box-score-page .box-score .box-score-panel:not(:nth-child(2)), .schedule-and-results-page .box-score .box-score-panel:not(:nth-child(2)) {
     display: flex !important;
@@ -106,11 +112,10 @@ td.player-index {
 }
 
 .box-score-table {
-	font-family: EurostileBold !important;
+    font-family: ${state.font?.name};
 }
 
 .box-score-table tbody > tr{
-
 	background: var(--layout-gradient);
 }
 
@@ -118,7 +123,12 @@ td.player-index {
 	color: var(--font-color-light) !important;
 }
 
-.box-score-table thead > tr {
+#panel\\:r0\\:0 tr.heading {
+	background: var(--away-gradient) !important;
+	color: var(--font-color-dark);
+}
+
+#panel\\:r0\\:1 tr.heading {
 	background: var(--home-gradient) !important;
 	color: var(--font-color-dark);
 }
@@ -131,7 +141,11 @@ td.player-index {
 	height: revert !important;
 }
 
-div > table:nth-child(4) > thead > tr > th.player-fullname::before
+.box-score-table thead > tr > th.player-fullname {
+    margin-left: 32px;
+}
+
+div > table:nth-child(5) > thead > tr > th.player-fullname::before
 {
 	content: 'Pitcher';
 
@@ -141,19 +155,16 @@ div > table:nth-child(1) > thead > tr > th.player-fullname::before {
 	content: 'Batter';
 }
 
+.react-tabs__tab-panel {
+    min-width: revert !important;
+    margin-right: 20px !important;
+}
+
+
 #app>div {
     background-image: none !important;
     background-color: #0000ff !important;
 }
-
-div.player-stats:has(> a[href*="/teams/24492"]) > .role-and-stats::after {
-    content: "";
-}
-
-div.player-stats:has(> a[href*="/teams/24475"]) > .role-and-stats::after {
-    content: "";
-}
-
 
 div.event-banner {
     display: none !important;
@@ -163,11 +174,107 @@ div.event-banner {
     display: none !important;
 }
 
-div.player-stats:has(> a[href*="/teams/24492"]) > .role-and-stats {
-    background: var(--home-gradient);
+.box-score-table tr:has(.player-fullname-no-index) .player-index {
+    visibility: hidden;
 }
 
-div.player-stats:has(> a[href*="/teams/24475"]) > .role-and-stats {
-    background: var(--away-gradient);
+.player-fullname,.player-fullname-no-index {
+    min-width: 160px !important;
 }
+.box-score-page .box-score-table table .player-fullname-no-index span, .schedule-and-results-page .box-score-table table .player-fullname-no-index span {
+    margin-left: 0 !important;
+}
+
+.player-lastname::after {
+    content: ' ';
+    white-space: pre;
+}
+
+.player-lastname, .player-firstname-and-number {
+    display: inline-block;
+}
+
+.box-score-page .box-score-panel .active-panel, .schedule-and-results-page .box-score-panel .active-panel {
+    background-color: ${state.filterColor} !important;
+}
+
+.box-score-page .box-score .box-score-panel, .schedule-and-results-page .box-score .box-score-panel {
+    overflow-x: revert !important;
+    overflow-y: revert !important;
+}
+
+th, td {
+    min-width: 15px !important;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.box-score-page .box-score-table table, .schedule-and-results-page .box-score-table table {
+    width: max-content !important;
+}
+
+.box-score-table table::before {
+
+    position: absolute;
+    content: "";
+    margin-right: 10px;
+    background-image: url("${state.awayLogo?.data}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 21px;
+    padding-left: 78px;
+    margin-left: 4px;
+    color: var(--font-color-light);
+    filter: var(--away-drop-shadow);
+
+}
+
+
+.box-score-table table {
+    margin-top: 32px;
+    margin-left: 16px;
+	background: var(--background-gradient) !important;
+	border: var(--default-border);
+}
+
+
+#panel\\:r0\\:0 .box-score-table table::before {
+    position: absolute;
+    content: "";
+    background-image: url("${state.awayLogo?.data}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 21px;
+    padding-left: 78px;
+    margin-top: -46px;
+    margin-left: -16px;
+
+    color: var(--font-color-light);
+    filter: var(--away-drop-shadow);
+
+}
+
+#panel\\:r0\\:1 .box-score-table table::before {
+    position: absolute;
+    content: "";
+    background-image: url("${state.homeLogo?.data}");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 21px;
+    padding-left: 78px;
+    margin-top: -46px;
+    margin-left: -16px;
+
+    color: var(--font-color-light);
+    filter: var(--away-drop-shadow);
+
+}
+
+
+table tr {
+    display: revert !important;
+}
+
+
 `
