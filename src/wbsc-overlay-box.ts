@@ -28,6 +28,15 @@ export const WBSC_OVERLAY_BOX = (state: State) => `
     src: url("${state.font?.data}") format("woff2");
 }
 
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+    margin: 0;
+}
+
 .box-score-top-bar>div.left-box>div>div:nth-child(1)::before {
     content: "${state.away}";
     margin-right: 10px;

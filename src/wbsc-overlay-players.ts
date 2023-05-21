@@ -24,11 +24,16 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
     font-family: ${state.font?.name};
     src: url("${state.font?.data}") format("woff2");
 }
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
 
 body {
     background-color: ${state.filterColor} !important;
     font-family: ${state.font?.name}, sans-serif;
     color: var(--font-color-dark);
+    margin: 0;
 }
 
 .single-player {

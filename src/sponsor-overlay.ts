@@ -25,9 +25,16 @@ export const OVERLAY_SPONSORS = (state: State) => `
     src: url("${state.font?.data}") format("woff2");
 }
 
+
+html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
 body {
     background-color: ${state.filterColor} !important;
     color: var(--font-color-dark);
+    margin: 0;
 }
 
 
@@ -51,7 +58,7 @@ body {
 
 
 .cd-section-content >div.cd-row:nth-child(1) .cd-carousel-container .owl-stage-outer::before {
-    font-family: HudsonNYSemiBold, sans-serif;
+    font-family: ${state.font?.name}, sans-serif;
     font-size: 20px;
     content: 'Bulls are sponsored by';
     color: var(--font-color-dark);
@@ -73,7 +80,7 @@ body {
 }
 
 .cd-section-content >div.cd-row:nth-child(2) .cd-carousel-container .owl-stage-outer::before {
-    font-family: HudsonNYSemiBold, sans-serif;
+    font-family: ${state.font?.name}, sans-serif;
     font-size: 20px;
     content: 'The Hard Bulls are sponsored by';
     color: var(--font-color-dark);
