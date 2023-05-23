@@ -18,6 +18,7 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
     --away-gradient: ${generateGradient(state.awayGradient)};
     --layout-gradient: ${generateGradient(state.layoutGradient)};
     --background-gradient: ${generateGradient(state.backgroundGradient)};
+    --background: ${state.filterColor};
 }
 
 @font-face {

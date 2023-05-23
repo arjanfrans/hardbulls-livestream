@@ -87,7 +87,7 @@ export const refreshBrowsers = async () => {
     await enableSceneItems()
 }
 
-export const publishCss = async (scoreCss: string, playersCss: string, sponsorsCss: string) => {
+export const publishCss = async (scoreCss: string, playersCss: string, sponsorsCss: string, lineupCss: string) => {
     await disableSceneItems()
     await getObs()?.callBatch([
         {
@@ -118,6 +118,16 @@ export const publishCss = async (scoreCss: string, playersCss: string, sponsorsC
                 },
             },
         },
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_lineup",
+                inputSettings: {
+                    css: lineupCss,
+                    width: 2000,
+                },
+            },
+        },
     ])
     await enableSceneItems()
 }
@@ -138,6 +148,15 @@ export const publishTickerUrl = async (tickerUrl: string) => {
             requestType: "SetInputSettings",
             requestData: {
                 inputName: "hb_players",
+                inputSettings: {
+                    url: tickerUrl,
+                },
+            },
+        },
+        {
+            requestType: "SetInputSettings",
+            requestData: {
+                inputName: "hb_lineup",
                 inputSettings: {
                     url: tickerUrl,
                 },
