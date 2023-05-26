@@ -37,6 +37,15 @@ export const TickerControl = ({ handleChange, state }: Props) => {
           onChange={(event) => handleChange("awayTeamId", event.currentTarget.value)}
         />
       </div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          Auto Refresh Time
+        </div>
+        <input type="time" value={state.refreshTime || ''} onChange={(event) => {
+          handleChange("refreshTime", event.target.value);
+        }} />
+        <button onClick={() => handleChange("refreshTime", undefined)}>Clear Refresh Time</button>
+      </div>
 
     </div>
   );

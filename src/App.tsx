@@ -15,7 +15,8 @@ import { ExportSection } from "./ExportSection";
 import { generateGradient } from "./service/css";
 import { setObs } from "./service/obs/obs-client";
 import { enhanceState, saveState } from "./state";
-import PACKAGE_JSON from '../package.json'
+import PACKAGE_JSON from "../package.json";
+import { refreshBrowsers } from "./service/obs/obs-api";
 
 interface Props {
   initialState: State;
@@ -33,6 +34,29 @@ function App({ initialState }: Props) {
 
     if (containerElement) {
       containerElement.style.backgroundColor = state.filterColor;
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (state.refreshTime) {
+      const interval = setInterval(async () => {
+        if (state.refreshTime) {
+          const [hour, minute] = state.refreshTime.split(":");
+
+          const now = new Date();
+
+          if (now.getHours() === Number.parseInt(hour) && now.getMinutes() === Number.parseInt(minute)) {
+            await refreshBrowsers();
+
+            setState({
+              ...state,
+              refreshTime: undefined
+            });
+          }
+        }
+      }, 5000);
+
+      return () => clearInterval(interval);
     }
   }, [state]);
 
@@ -217,7 +241,7 @@ function App({ initialState }: Props) {
           <div>
             <a href="./transitions/logo-drop.webm" download>Download Transition</a>
           </div>
-          <hr/>
+          <hr />
           <div>
             {PACKAGE_JSON.name}@v{PACKAGE_JSON.version} - &copy; {PACKAGE_JSON.author?.name} {new Date().getFullYear()}
           </div>
