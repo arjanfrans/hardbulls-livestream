@@ -26,7 +26,7 @@ export const WBSC_OVERLAY_LINEUP = (state: State) => `
 }
 
 html {
-    line-height: 1.15; /* 1 */
+    line-height: ${state.fontLineHeight}; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -35,7 +35,7 @@ body {
     font-family: ${state.font?.name};
     color: var(--font-color-dark);
     margin: 0;
-    line-height: 1.15; /* 1 */
+    line-height: ${state.fontLineHeight}; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 

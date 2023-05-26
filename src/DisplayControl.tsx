@@ -14,18 +14,18 @@ interface Props {
 
 export const DisplayControl = ({ handleChange, state }: Props) => {
   const handleFontSelect = async (name: string) => {
-      const encodedFont = await convertFileToBase64(await getBlob(`fonts/${name}.woff2`));
+    const encodedFont = await convertFileToBase64(await getBlob(`fonts/${name}.woff2`));
 
-      handleChange("font", {
-        name: name,
-        data: encodedFont
-      });
+    handleChange("font", {
+      name: name,
+      data: encodedFont
+    });
 
-      const font = new FontFace(name, `url("${encodedFont}") format("woff2")`);
-      const loadedFont = await font.load();
+    const font = new FontFace(name, `url("${encodedFont}") format("woff2")`);
+    const loadedFont = await font.load();
 
-      document.fonts.add(loadedFont);
-  }
+    document.fonts.add(loadedFont);
+  };
 
   return (
     <div>
@@ -38,6 +38,14 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         </button>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          Line Height
+        </div>
+        <div>
+          <input type="number" value={state.fontLineHeight}
+                 step={0.01}
+                 onChange={(event) => handleChange("fontLineHeight", Number.parseFloat(event.target.value))} />
+        </div>
         <div>
           Font Family
         </div>
@@ -53,15 +61,16 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
         <div>Filter color (greenscreen: 0, 255, 0)</div>
         <ColorPicker color={state.filterColor} onChange={(color) => handleChange("filterColor", color)} />
       </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>Active Base Color</div>
         <ColorPicker color={state.activeBaseColor} onChange={(color) => handleChange("activeBaseColor", color)} />
         <div>Inactive Base Color</div>
         <ColorPicker color={state.inactiveBaseColor} onChange={(color) => handleChange("inactiveBaseColor", color)} />
-          <div>Active Inning Color</div>
-          <ColorPicker color={state.activeInningColor} onChange={(color) => handleChange("activeInningColor", color)} />
-          <div>Inactive Inning Color</div>
-          <ColorPicker color={state.inactiveInningColor} onChange={(color) => handleChange("inactiveInningColor", color)} />
+        <div>Active Inning Color</div>
+        <ColorPicker color={state.activeInningColor} onChange={(color) => handleChange("activeInningColor", color)} />
+        <div>Inactive Inning Color</div>
+        <ColorPicker color={state.inactiveInningColor}
+                     onChange={(color) => handleChange("inactiveInningColor", color)} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>Font Color Light</div>
@@ -71,14 +80,18 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-        Home Logo Shadow
-        <ColorPicker color={state.homeLogoShadow[0]} onChange={(color) => handleChange("homeLogoShadow", [color, state.homeLogoShadow[1]])} />
-        <ColorPicker color={state.homeLogoShadow[1]} onChange={(color) => handleChange("homeLogoShadow", [state.homeLogoShadow[0], color])} />
+          Home Logo Shadow
+          <ColorPicker color={state.homeLogoShadow[0]}
+                       onChange={(color) => handleChange("homeLogoShadow", [color, state.homeLogoShadow[1]])} />
+          <ColorPicker color={state.homeLogoShadow[1]}
+                       onChange={(color) => handleChange("homeLogoShadow", [state.homeLogoShadow[0], color])} />
         </div>
         <div>
-        Away Logo Shadow
-        <ColorPicker color={state.awayLogoShadow[0]} onChange={(color) => handleChange("awayLogoShadow", [color, state.awayLogoShadow[1]])} />
-        <ColorPicker color={state.awayLogoShadow[1]} onChange={(color) => handleChange("awayLogoShadow", [state.awayLogoShadow[0], color])} />
+          Away Logo Shadow
+          <ColorPicker color={state.awayLogoShadow[0]}
+                       onChange={(color) => handleChange("awayLogoShadow", [color, state.awayLogoShadow[1]])} />
+          <ColorPicker color={state.awayLogoShadow[1]}
+                       onChange={(color) => handleChange("awayLogoShadow", [state.awayLogoShadow[0], color])} />
         </div>
       </div>
       <div>

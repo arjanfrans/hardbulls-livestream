@@ -26,7 +26,7 @@ export const WBSC_OVERLAY_PLAYER = (state: State) => `
     src: url("${state.font?.data}") format("woff2");
 }
 html {
-    line-height: 1.15; /* 1 */
+    line-height: ${state.fontLineHeight}; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 

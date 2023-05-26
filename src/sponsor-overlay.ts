@@ -27,7 +27,7 @@ export const OVERLAY_SPONSORS = (state: State) => `
 
 
 html {
-    line-height: 1.15; /* 1 */
+    line-height: ${state.fontLineHeight}; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 

@@ -39,7 +39,8 @@ function App({ initialState }: Props) {
   return (
     <div className="app-container">
       <div className="scoreboard" style={{
-        fontFamily: `${state.font?.name}, sans-serif`
+        fontFamily: `${state.font?.name}, sans-serif`,
+        lineHeight: state.fontLineHeight
       }}>
         <div className="scoreboard-top" style={{
           background: generateGradient(state.backgroundGradient)
