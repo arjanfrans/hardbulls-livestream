@@ -88,6 +88,7 @@ p, span, td, th {
 td.player-index, th.player-index {
     text-align: center !important;
     font-size: 24px !important;
+    width: 3ch;
 }
 
 .box-score-page .box-score .box-score-panel:not(:nth-child(2)), .schedule-and-results-page .box-score .box-score-panel:not(:nth-child(2)) {
@@ -104,7 +105,7 @@ td.player-index, th.player-index {
 }
 
 .box-score-table {
-    font-family: EurostileBold;
+    font-family: ${state.font?.name};
 }
 
 .box-score-page .box-score-table table tr, .schedule-and-results-page .box-score-table table tr {
@@ -160,7 +161,7 @@ div > table:nth-child(1) > thead > tr > th.player-fullname::before {
 
 .react-tabs__tab-panel {
     min-width: revert !important;
-    margin-right: 20px !important;
+    margin-right: 30px !important;
 }
 
 
@@ -211,6 +212,8 @@ th, td {
     min-width: 4ch !important;
     padding-left: 4px !important;
     padding-right: 4px !important;
+    padding-top: 4px !important; 
+    padding-bottom: 4px !important;
     border-right: var(--default-border);
 }
 
@@ -242,6 +245,11 @@ th, td {
     border: var(--default-border);
 }
 
+.box-score-table td:not(.player-index):not(.player-fullname):not(.player-fullname-no-index),
+ .box-score-table th:not(.player-index):not(.player-fullname):not(.player-fullname-no-index) {
+    display: ${state.displayLineupStats ? "revert" : "none"} !important;
+}
+
 #panel\\:r0\\:0 .box-score-table table::before {
     position: absolute;
     content: "";
@@ -251,7 +259,7 @@ th, td {
     padding: 21px;
     padding-left: 78px;
     margin-top: -46px;
-    margin-left: -10px;
+    margin-left: 0;
 
     color: var(--font-color-light);
     filter: var(--away-drop-shadow);
@@ -267,7 +275,7 @@ th, td {
     padding: 21px;
     padding-left: 78px;
     margin-top: -46px;
-    margin-left: -10px;
+    margin-left: 0;
 
     color: var(--font-color-light);
     filter: var(--away-drop-shadow);

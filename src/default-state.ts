@@ -65,5 +65,6 @@ export const DEFAULT_STATE: State = {
     activeInningColor: "#ffd300",
     inactiveInningColor: "#8c8b7f",
     fontLineHeight: 1.15,
+    displayLineupStats: false,
     refreshTime: undefined,
 }

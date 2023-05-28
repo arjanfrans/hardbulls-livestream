@@ -36,5 +36,6 @@ export interface State {
     inactiveInningColor: string
     font?: Font
     fontLineHeight: number
+    displayLineupStats: boolean
     refreshTime?: string
 }

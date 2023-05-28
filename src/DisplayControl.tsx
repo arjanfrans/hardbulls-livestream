@@ -122,6 +122,12 @@ export const DisplayControl = ({ handleChange, state }: Props) => {
           onChange={(gradient) => handleChange("backgroundGradient", gradient)}
         />
       </div>
+      <div>
+        Display Lineup Stats
+        <input type="checkbox"
+                  checked={state.displayLineupStats || false}
+                  onChange={(event) => handleChange('displayLineupStats', event.currentTarget.checked)} />
+      </div>
     </div>
   );
 };
