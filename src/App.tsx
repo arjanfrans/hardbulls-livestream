@@ -225,7 +225,8 @@ function App({ initialState }: Props) {
         <div>
           Launch OBS with --enable-experimental-web-platform-features<br />
           Add a scene for the overlay: `hb_overlay`<br />
-          Add two browser sources: `hb_score` and `hb_players`
+          Add two browser sources: `hb_score` and `hb_players`<br/>
+          For lineups, add browser source: `hb_lineup`
           <hr />
           <ExportSection
             state={state}
