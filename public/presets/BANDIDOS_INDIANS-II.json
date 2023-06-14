@@ -1,0 +1,78 @@
+{
+  "bases": [
+    3
+  ],
+  "home": "BANDIDOS",
+  "away": "INDIANS II",
+  "score": [
+    0,
+    0
+  ],
+  "inning": {
+    "value": 0,
+    "half": 0
+  },
+  "outs": 0,
+  "fontLineHeight": 1.15,
+  "strikes": 0,
+  "balls": 0,
+  "homeLogo": {
+    "name": "logo_hb.png"
+  },
+  "awayLogo": {
+    "name": "logo_di.png"
+  },
+  "filterColor": "#00ff00",
+  "awayTeamId": "24616",
+  "homeTeamId": "24618",
+  "hideBases": false,
+  "hideCounts": false,
+  "homeGradient": {
+    "angle": 180,
+    "startPercentage": 30,
+    "endPercentage": 50,
+    "startColor": "#dd0808",
+    "endColor": "#ea1010"
+  },
+  "awayGradient": {
+    "angle": 180,
+    "startPercentage": 30,
+    "endPercentage": 50,
+    "startColor": "#2c399b",
+    "endColor": "#3848bc"
+  },
+  "layoutGradient": {
+    "angle": 180,
+    "startPercentage": 30,
+    "endPercentage": 60,
+    "startColor": "#ebebeb",
+    "endColor": "#e0e0e0"
+  },
+  "backgroundGradient": {
+    "angle": 180,
+    "startPercentage": 0,
+    "endPercentage": 100,
+    "startColor": "#000000",
+    "endColor": "#363636"
+  },
+  "homeLogoShadow": [
+    "#000000",
+    "#000000"
+  ],
+  "awayLogoShadow": [
+    "#949494",
+    "#919191"
+  ],
+  "fontColorLight": "#e8e8e8",
+  "fontColorDark": "#292929",
+  "obsSocket": "ws://127.0.0.1:4455",
+  "tickerUrl": "",
+  "activeBaseColor": "#f5c000",
+  "inactiveBaseColor": "#c7c7c7",
+  "activeInningColor": "#b30000",
+  "inactiveInningColor": "#b3b3b3",
+  "font": {
+    "name": "EurostileBold"
+  },
+  "refreshTime": "13:15"
+}
