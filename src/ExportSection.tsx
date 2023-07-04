@@ -11,7 +11,7 @@ interface Props {
 }
 
 const downloadPreset = async (name: string) => {
-  const response = await fetch(`${window.location.origin}/presets/${name}`);
+  const response = await fetch(`${window.location.origin}/presets/${name}.json`);
 
   return await response.json();
 };
@@ -43,7 +43,7 @@ export const ExportSection = ({ state, handleReset, handleLoadPreset }: Props) =
             }
           }}>
             <option></option>
-            {CONFIG.presets.map(preset => (
+            {CONFIG.presets.sort().map(preset => (
               <option key={preset} value={preset}>{preset}</option>
             ))}
           </select>

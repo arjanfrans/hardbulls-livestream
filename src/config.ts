@@ -1,6 +1,15 @@
 export const CONFIG = {
     fonts: ["EurostileBold", "NeueAachenBlack", "HudsonNYSemiBold", "EvanstonTavern1846Regular", "NovecentoBold"],
-    presets: ["default.json", "BULLS_DUCKS.json", "BULLS_INDIANS.json", "BULLS_BATS.json", "BANDIDOS_INDIANS-II.json"],
+    presets: [
+        "default",
+        "BULLS_DUCKS",
+        "BULLS_INDIANS",
+        "BULLS_BATS",
+        "BANDIDOS_INDIANS-II",
+        "BULLS_WANDERERS",
+        "BULLETS_CARDINALS-II",
+        "BULLETS_INDIANS-III",
+    ],
     logos: [
         "logo_bb.png",
         "logo_dd.png",
